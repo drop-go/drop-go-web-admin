@@ -45,7 +45,6 @@ export const SignUpForm = () => {
         />
         <FormErrorMessage>{(errors.name && errors.email?.message) as string}</FormErrorMessage>
       </FormControl>
-
       <FormControl isInvalid={errors.name ? true : false} mb="5px">
         <FormLabel htmlFor="organization">組織名</FormLabel>
         <Input
