@@ -1,12 +1,8 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { FormErrorMessage, FormLabel, FormControl, Input, Button } from '@chakra-ui/react'
+import { FormErrorMessage, FormLabel, FormControl, Input, Button, Center } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
 
-/*
-TODO:
-  - style調整
-  - ログイン成功後の画面遷移
-*/
 export const LoginForm = () => {
   const {
     register,
@@ -14,16 +10,22 @@ export const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm()
   const { name, ref, onChange, onBlur } = register('email')
+  const navigate = useNavigate()
   const onSubmit = (data: any) => {
     console.log(`${data} submit!!`)
+    navigate('/dashboard')
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl isInvalid={errors.name ? true : false}>
+      <Center m="20px">
+        <h2>DropGo Admin</h2>
+      </Center>
+      <FormControl isInvalid={errors.name ? true : false} mb="5px">
         <FormLabel htmlFor="email">メールアドレス</FormLabel>
         <Input
           id="email"
+          type="email"
           placeholder="example@example.com"
           {...register('email', {
             required: '必須項目です',
@@ -31,10 +33,11 @@ export const LoginForm = () => {
         />
         <FormErrorMessage>{(errors.name && errors.email?.message) as string}</FormErrorMessage>
       </FormControl>
-      <FormControl isInvalid={errors.name ? true : false}>
+      <FormControl isInvalid={errors.name ? true : false} mb="5px">
         <FormLabel htmlFor="password">パスワード</FormLabel>
         <Input
           id="password"
+          type="password"
           placeholder="Enter your password"
           {...register('password', {
             required: '必須項目です',
@@ -42,7 +45,7 @@ export const LoginForm = () => {
         />
         <FormErrorMessage>{(errors.name && errors.email?.message) as string}</FormErrorMessage>
       </FormControl>
-      <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
+      <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit" w={'100%'}>
         ログイン
       </Button>
     </form>
