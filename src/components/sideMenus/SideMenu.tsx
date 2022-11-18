@@ -7,29 +7,29 @@ export const SideMenu = () => {
     <VStack bgColor="#40325F" w="50px" color="white" h="92vh" width="15vw">
       <Box h="7vh" w="100%" borderBottom="1px" borderColor="#7E66B2">
         <Center h="100%" w="100%">
-          Menu1
+          Home
         </Center>
       </Box>
       <Box h="7vh" w="100%" borderBottom="1px" borderColor="#7E66B2">
         <Center h="100%" w="100%">
-          Menu2
+          Map
         </Center>
       </Box>
       <Box h="7vh" w="100%" borderBottom="1px" borderColor="#7E66B2">
         <Center h="100%" w="100%">
-          Menu3
+          Events
         </Center>
       </Box>
       <Box h="7vh" w="100%" borderBottom="1px" borderColor="#7E66B2">
         <Center h="100%" w="100%">
-          Menu4
+          Analytics
         </Center>
       </Box>
       <Box h="7vh" w="100%" borderBottom="1px" borderColor="#7E66B2">
         <Center h="100%" w="100%">
           <HStack display="flex">
             <SettingsIcon />
-            <Text>設定</Text>
+            <Text>Settings</Text>
           </HStack>
         </Center>
       </Box>
