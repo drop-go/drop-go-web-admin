@@ -3032,6 +3032,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@googlemaps/js-api-loader@npm:^1.7.0":
+  version: 1.15.1
+  resolution: "@googlemaps/js-api-loader@npm:1.15.1"
+  dependencies:
+    fast-deep-equal: ^3.1.3
+  checksum: 0f359c6703116eee926afcf044be419358aee0c34d597c394f5b543ab8b6fb19a90a631f9bcb22e457605edfa08b5f6a29856149e63c4c9305be848d913ec013
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.6":
   version: 0.11.6
   resolution: "@humanwhocodes/config-array@npm:0.11.6"
@@ -3425,6 +3434,13 @@ __metadata:
   version: 2.0.4
   resolution: "@leichtgewicht/ip-codec@npm:2.0.4"
   checksum: 468de1f04d33de6d300892683d7c8aecbf96d1e2c5fe084f95f816e50a054d45b7c1ebfb141a1447d844b86a948733f6eebd92234da8581c84a1ad4de2946a2d
+  languageName: node
+  linkType: hard
+
+"@mapbox/point-geometry@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@mapbox/point-geometry@npm:0.1.0"
+  checksum: ed41c1ce0140de81039424415d9a199abba72cdb2287314e1b8c3e295da3224f7e8c1b0ae99a9b097703e7abe63e1978a518e29896989cc8bba3d482360bc22f
   languageName: node
   linkType: hard
 
@@ -4061,6 +4077,15 @@ __metadata:
     "@types/qs": "*"
     "@types/serve-static": "*"
   checksum: 15c1af46d02de834e4a225eccaa9d85c0370fdbb3ed4e1bc2d323d24872309961542b993ae236335aeb3e278630224a6ea002078d39e651d78a3b0356b1eaa79
+  languageName: node
+  linkType: hard
+
+"@types/google-map-react@npm:^2.1.7":
+  version: 2.1.7
+  resolution: "@types/google-map-react@npm:2.1.7"
+  dependencies:
+    "@types/react": "*"
+  checksum: 0e8e014208e39624c861616021b4f8f8e085caaad3600418f33e6bf2481451ea97a1167ae4a2157cf3d1e397905721955a012b00e55d7c07d7e4bd95694dc69e
   languageName: node
   linkType: hard
 
@@ -6747,6 +6772,7 @@ __metadata:
     "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": ^13.4.0
     "@testing-library/user-event": ^13.5.0
+    "@types/google-map-react": ^2.1.7
     "@types/jest": ^27.5.2
     "@types/node": ^16.11.68
     "@types/react": ^18.0.21
@@ -6757,6 +6783,7 @@ __metadata:
     eslint-config-prettier: ^8.5.0
     eslint-plugin-react: ^7.31.10
     framer-motion: ^7.6.1
+    google-map-react: ^2.2.0
     npm-run-all: ^4.1.5
     prettier: ^2.7.1
     react: ^18.2.0
@@ -7400,7 +7427,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eventemitter3@npm:^4.0.0":
+"eventemitter3@npm:^4.0.0, eventemitter3@npm:^4.0.4":
   version: 4.0.7
   resolution: "eventemitter3@npm:4.0.7"
   checksum: 1875311c42fcfe9c707b2712c32664a245629b42bb0a5a84439762dd0fd637fc54d078155ea83c2af9e0323c9ac13687e03cfba79b03af9f40c89b4960099374
@@ -8087,6 +8114,21 @@ __metadata:
     merge2: ^1.4.1
     slash: ^3.0.0
   checksum: b4be8885e0cfa018fc783792942d53926c35c50b3aefd3fdcfb9d22c627639dc26bd2327a40a0b74b074100ce95bb7187bfeae2f236856aa3de183af7a02aea6
+  languageName: node
+  linkType: hard
+
+"google-map-react@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "google-map-react@npm:2.2.0"
+  dependencies:
+    "@googlemaps/js-api-loader": ^1.7.0
+    "@mapbox/point-geometry": ^0.1.0
+    eventemitter3: ^4.0.4
+    prop-types: ^15.7.2
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 4fe4155e2eebf0747f55bd9982fbab12a35b01afe69b8348834bc6eaf1e608d589c38f9cd5dff0f9bf7448d6e55c3fcfa7ecd0b62706606f1c497cd5211714f4
   languageName: node
   linkType: hard
 
@@ -12025,7 +12067,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
