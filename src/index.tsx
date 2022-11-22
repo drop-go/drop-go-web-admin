@@ -5,15 +5,18 @@ import reportWebVitals from './reportWebVitals'
 import { Router } from './routes/Router'
 import { ChakraProvider } from '@chakra-ui/react'
 import { RecoilRoot } from 'recoil'
+import { CookiesProvider } from 'react-cookie'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <ChakraProvider>
-        <Router />
-      </ChakraProvider>
-    </RecoilRoot>
+    <CookiesProvider>
+      <RecoilRoot>
+        <ChakraProvider>
+          <Router />
+        </ChakraProvider>
+      </RecoilRoot>
+    </CookiesProvider>
   </React.StrictMode>
 )
 

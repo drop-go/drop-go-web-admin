@@ -1,25 +1,46 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { FormErrorMessage, FormLabel, FormControl, Input, Button, Center } from '@chakra-ui/react'
+import { FormErrorMessage, FormLabel, FormControl, Input, Button, Center, Textarea } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
 
 export const SignUpForm = () => {
+  const [cookies, setCookie] = useCookies(['token'])
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm()
-  const { name, ref, onChange, onBlur } = register('email')
   const navigate = useNavigate()
   const onSubmit = (data: any) => {
-    console.log(`${data} submit!!`)
+    const { email, password, organization, organizationDescription } = data
+    const body = {
+      email: email,
+      password: password,
+      name: organization,
+      description: organizationDescription,
+      iconDataURL: '',
+    }
+    // TODO: signup
+    /*
+    axios
+      .post(url, body)
+      .then((res) => {
+        const token = res.data.token
+        setCookie('token', token)
+        navigate('/dashboard')
+      }).catch().
+     */
+    setCookie('token', 'dev_token')
     navigate('/dashboard')
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Center m="20px">
-        <h2>DropGo Admin</h2>
+      <Center m="40px auto" h="80px" w="80px">
+        <h2>
+          <img src={`${process.env.PUBLIC_URL}/logo512.png`} alt="DropGo Admin" width="100%" />
+        </h2>
       </Center>
       <FormControl isInvalid={errors.name ? true : false} mb="5px">
         <FormLabel htmlFor="email">メールアドレス</FormLabel>
@@ -56,8 +77,17 @@ export const SignUpForm = () => {
         />
         <FormErrorMessage>{(errors.name && errors.email?.message) as string}</FormErrorMessage>
       </FormControl>
+      <FormControl>
+        <FormLabel htmlFor="organizationDescription">組織紹介文</FormLabel>
+        <Textarea
+          h={'20vh'}
+          id="organizationDescription"
+          placeholder="Enter your organization "
+          {...register('organizationDescription', {})}
+        />
+      </FormControl>
       <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit" w={'100%'}>
-        ログイン
+        サインアップ
       </Button>
     </form>
   )
