@@ -13,11 +13,11 @@ export const Login = () => {
           </Box>
           <Text m="10px">
             <Link to="/new">
-              <ChakraLink color="teal.500">新規アカウント作成</ChakraLink>
+              <ChakraLink color="brand.500">新規アカウント作成</ChakraLink>
             </Link>
           </Text>
           <Text m="10px">
-            <ChakraLink href="" color="teal.500">
+            <ChakraLink href="" color="brand.500">
               パスワードを忘れた
             </ChakraLink>
           </Text>

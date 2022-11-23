@@ -86,7 +86,7 @@ export const SignUpForm = () => {
           {...register('organizationDescription', {})}
         />
       </FormControl>
-      <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit" w={'100%'}>
+      <Button mt={4} colorScheme="brand" isLoading={isSubmitting} type="submit" w={'100%'}>
         サインアップ
       </Button>
     </form>

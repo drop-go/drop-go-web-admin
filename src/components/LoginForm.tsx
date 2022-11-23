@@ -65,7 +65,7 @@ export const LoginForm = () => {
         />
         <FormErrorMessage>{(errors.name && errors.email?.message) as string}</FormErrorMessage>
       </FormControl>
-      <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit" w={'100%'}>
+      <Button mt={4} colorScheme="brand" isLoading={isSubmitting} type="submit" w={'100%'}>
         ログイン
       </Button>
     </form>

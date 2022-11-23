@@ -13,7 +13,7 @@ export const SignUp = () => {
           </Box>
           <Text m="10px">
             <Link to="/login">
-              <ChakraLink color="teal.500">すでにアカウントを持っている方はこちら</ChakraLink>
+              <ChakraLink color="brand.500">すでにアカウントを持っている方はこちら</ChakraLink>
             </Link>
           </Text>
         </div>

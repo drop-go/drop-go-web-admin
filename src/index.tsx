@@ -6,13 +6,14 @@ import { Router } from './routes/Router'
 import { ChakraProvider } from '@chakra-ui/react'
 import { RecoilRoot } from 'recoil'
 import { CookiesProvider } from 'react-cookie'
+import { theme } from './theme'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <CookiesProvider>
       <RecoilRoot>
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
           <Router />
         </ChakraProvider>
       </RecoilRoot>
