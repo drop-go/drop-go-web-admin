@@ -7,6 +7,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { RecoilRoot } from 'recoil'
 import { CookiesProvider } from 'react-cookie'
 import { theme } from './theme'
+import { LoadScript } from '@react-google-maps/api'
+import { MAP_API_KEY } from './consts/env'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
@@ -14,7 +16,9 @@ root.render(
     <CookiesProvider>
       <RecoilRoot>
         <ChakraProvider theme={theme}>
-          <Router />
+          <LoadScript googleMapsApiKey={MAP_API_KEY}>
+            <Router />
+          </LoadScript>
         </ChakraProvider>
       </RecoilRoot>
     </CookiesProvider>
