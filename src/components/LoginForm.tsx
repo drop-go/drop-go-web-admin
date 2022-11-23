@@ -2,17 +2,35 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { FormErrorMessage, FormLabel, FormControl, Input, Button, Center } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
 
 export const LoginForm = () => {
+  const [cookies, setCookie] = useCookies(['token'])
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm()
-  const { name, ref, onChange, onBlur } = register('email')
   const navigate = useNavigate()
   const onSubmit = (data: any) => {
-    console.log(`${data} submit!!`)
+    const { email, password } = data
+    const body = {
+      email: email,
+      password: password,
+    }
+
+    // TODO: login
+    /*
+    axios
+      .get(`${url}/auth`, body)
+      .then((res) => {
+        const token = res.data.token
+        setCookie('token', token)
+        navigate('/dashboard')
+      })
+      .catch()
+    */
+    setCookie('token', 'dev_token')
     navigate('/dashboard')
   }
 

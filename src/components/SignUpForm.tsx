@@ -29,7 +29,7 @@ export const SignUpForm = () => {
         const token = res.data.token
         setCookie('token', token)
         navigate('/dashboard')
-      }).catch().
+      }).catch()
      */
     setCookie('token', 'dev_token')
     navigate('/dashboard')
