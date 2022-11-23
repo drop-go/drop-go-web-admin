@@ -18,12 +18,21 @@ import { Link } from 'react-router-dom'
 import { Header } from '../components/headers/Header'
 import { SideMenu } from '../components/sideMenus/SideMenu'
 
+/**
+ * HACK:
+ * ダッシュボードの枠（Header, SideMenu）を共通コンポーネント化
+ */
+
 export const Events = () => {
   return (
     <div>
       <Header />
       <Box display="flex">
         <SideMenu />
+        {/**
+         * HACK:
+         * 以下コンポーネントの分割
+         */}
         <Box bgColor="#EDF2F6" h="92vh" w="85vw">
           <Center w="100%" h="100%">
             <Box w="80vw" h="85vh" bg="white" m="auto">

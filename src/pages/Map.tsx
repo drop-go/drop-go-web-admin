@@ -11,6 +11,10 @@ const center = {
 }
 const zoom = DEFAULT_ZOOM
 
+/**
+ * HACK:
+ * ダッシュボードの枠（Header, SideMenu）を共通コンポーネント化
+ */
 export const Map = () => {
   return (
     <div>

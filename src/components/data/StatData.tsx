@@ -1,6 +1,6 @@
 import { StatLabel, Stat, StatGroup, StatNumber, Skeleton, StatHelpText, StatArrow } from '@chakra-ui/react'
 import React from 'react'
-
+// TODO: 不必要なimport削除
 export const StatData = () => {
   return (
     <StatGroup bgColor="white" h="100%" p="10px">

@@ -38,6 +38,10 @@ export const SignUpForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Center m="40px auto" h="80px" w="80px">
+        {/**
+         * HACK:
+         * ロゴアイコン共通コンポーネント化
+         */}
         <h2>
           <img src={`${process.env.PUBLIC_URL}/logo512.png`} alt="DropGo Admin" width="100%" />
         </h2>

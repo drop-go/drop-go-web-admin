@@ -1,3 +1,4 @@
+// TODO: 不要なimportを削除
 import { InputGroup, InputLeftElement, Input, InputRightElement, Button } from '@chakra-ui/react'
 import React from 'react'
 import { SearchIcon } from '@chakra-ui/icons'

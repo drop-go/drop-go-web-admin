@@ -3,6 +3,10 @@ import { Box, Center, Link as ChakraLink, Text } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { SignUpForm } from '../components/SignUpForm'
 
+/**
+ * HACK:
+ * ダッシュボードの枠（Header, SideMenu）を共通コンポーネント化
+ */
 export const SignUp = () => {
   return (
     <div>
