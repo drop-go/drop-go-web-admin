@@ -24,9 +24,11 @@ export const SideMenu = () => {
         </Link>
       </Box>
       <Box h="7vh" w="100%" borderBottom="1px" borderColor="#7E66B2">
-        <Center h="100%" w="100%">
-          Events
-        </Center>
+        <Link to={'/dashboard/events'}>
+          <Center h="100%" w="100%">
+            Events
+          </Center>
+        </Link>
       </Box>
       <Box h="7vh" w="100%" borderBottom="1px" borderColor="#7E66B2">
         <Center h="100%" w="100%">

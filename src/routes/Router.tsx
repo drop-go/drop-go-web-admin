@@ -6,6 +6,8 @@ import { NotFound } from '../pages/NotFound'
 import { SignUp } from '../pages/SignUp'
 import { Map } from '../pages/Map'
 import { useCookies } from 'react-cookie'
+import { Events } from '../pages/Events'
+import { NewEvent } from '../pages/NewEvent'
 
 export const Router = () => {
   const [cookies] = useCookies(['token'])
@@ -23,6 +25,15 @@ export const Router = () => {
               <Routes>
                 <Route index element={<Dashboard />} />
                 <Route path={'/map'} element={<Map />} />
+                <Route
+                  path={'/events/*'}
+                  element={
+                    <Routes>
+                      <Route index element={<Events />} />
+                      <Route path={'/new'} element={<NewEvent />} />
+                    </Routes>
+                  }
+                />
               </Routes>
             ) : (
               <Navigate replace to={'/login'} />
