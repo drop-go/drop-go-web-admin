@@ -1,13 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { Dashboard } from '../pages/Dashboard'
-import { Login } from '../pages/Login'
-import { NotFound } from '../pages/NotFound'
-import { SignUp } from '../pages/SignUp'
-import { Map } from '../pages/Map'
+import { Dashboard, Login, SignUp, Map, Events, NewEvent, NotFound } from '../pages'
 import { useCookies } from 'react-cookie'
-import { Events } from '../pages/Events'
-import { NewEvent } from '../pages/NewEvent'
 
 export const Router = () => {
   const [cookies] = useCookies(['token'])
