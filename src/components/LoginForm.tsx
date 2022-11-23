@@ -36,8 +36,10 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Center m="20px">
-        <h2>DropGo Admin</h2>
+      <Center m="40px auto" h="80px" w="80px">
+        <h2>
+          <img src={`${process.env.PUBLIC_URL}/logo512.png`} alt="DropGo Admin" width="100%" />
+        </h2>
       </Center>
       <FormControl isInvalid={errors.name ? true : false} mb="5px">
         <FormLabel htmlFor="email">メールアドレス</FormLabel>
