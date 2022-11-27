@@ -1,5 +1,5 @@
 import React from 'react'
-import { List } from '../components/events/list'
+import { List } from '../components/events/List'
 import { Template } from '../components/Template'
 
 export const Events = () => {

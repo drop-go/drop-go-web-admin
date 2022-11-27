@@ -7,7 +7,7 @@ export const Template = (props: { children?: ReactNode }) => {
   return (
     <>
       <Header />
-      <Box flex="display">
+      <Box display="flex">
         <SideMenu />
         {props.children}
       </Box>

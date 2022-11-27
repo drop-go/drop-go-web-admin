@@ -1,21 +1,13 @@
 import React from 'react'
-import { Header } from '../components/headers/Header'
-import { SideMenu } from '../components/sideMenus/SideMenu'
 import { Layout } from '../components/dashboards/Layout'
-import { Box } from '@chakra-ui/react'
+import { Template } from '../components/Template'
 
-/**
- * HACK:
- * ダッシュボードの枠（Header, SideMenu）を共通コンポーネント化
- */
 export const Dashboard = () => {
   return (
     <div>
-      <Header />
-      <Box display="flex">
-        <SideMenu />
+      <Template>
         <Layout />
-      </Box>
+      </Template>
     </div>
   )
 }
