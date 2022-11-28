@@ -1,8 +1,8 @@
 import React from 'react'
 import { Box } from '@chakra-ui/react'
-import { Template } from '../components/Template'
+import { Template } from '../../components/Template'
 
-export const NewEvent = () => {
+export const New = () => {
   return (
     <div>
       <Template>
