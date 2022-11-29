@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FormErrorMessage, FormLabel, FormControl, Input, Button, Center } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
+import axios from 'axios'
+import { API_URL } from '../consts/env'
+
+const url = `${API_URL}/auth`
 
 export const LoginForm = () => {
   const [cookies, setCookie] = useCookies(['token'])
+  const [error, setError] = useState('')
   const {
     register,
     handleSubmit,
@@ -19,19 +24,16 @@ export const LoginForm = () => {
       password: password,
     }
 
-    // TODO: login
-    /*
     axios
-      .get(`${url}/auth`, body)
+      .post(url, body)
       .then((res) => {
         const token = res.data.token
         setCookie('token', token)
         navigate('/dashboard')
       })
-      .catch()
-    */
-    setCookie('token', 'dev_token')
-    navigate('/dashboard')
+      .catch((err) => {
+        setError(`エラー: ${err}`)
+      })
   }
 
   return (
@@ -41,6 +43,7 @@ export const LoginForm = () => {
           <img src={`${process.env.PUBLIC_URL}/logo512.png`} alt="DropGo Admin" width="100%" />
         </h2>
       </Center>
+      <span>{error}</span>
       <FormControl isInvalid={errors.name ? true : false} mb="5px">
         <FormLabel htmlFor="email">メールアドレス</FormLabel>
         <Input
