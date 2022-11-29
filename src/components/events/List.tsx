@@ -35,7 +35,8 @@ export const List = () => {
               <Thead>
                 <Tr>
                   <Th>イベント名</Th>
-                  <Th>期間</Th>
+                  <Th>ステータス</Th>
+                  <Th>サムネイル</Th>
                 </Tr>
               </Thead>
               <Tbody>
@@ -46,6 +47,7 @@ export const List = () => {
                   <Td m="5px">
                     <Skeleton height="10px"></Skeleton>
                   </Td>
+                  <Td></Td>
                 </Tr>
                 <Tr>
                   <Td m="5px">
@@ -62,6 +64,7 @@ export const List = () => {
                   <Td m="5px">
                     <Skeleton height="10px"></Skeleton>
                   </Td>
+                  <Td></Td>
                 </Tr>
               </Tbody>
             </Table>
