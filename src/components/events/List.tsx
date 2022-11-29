@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Box,
   Center,
@@ -15,8 +15,25 @@ import {
   Tr,
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { API_URL } from '../../consts/env'
+import { useCookies } from 'react-cookie'
+import { EventsGetResponse } from '../../api/interface'
 
+const url = `${API_URL}/events`
 export const List = () => {
+  const [events, setEvents] = useState<EventsGetResponse[]>([])
+  const [cookies] = useCookies(['token'])
+  axios
+    .get(url, { headers: { Authorization: `Bearer ${cookies.token}` } })
+    .then((res) => {
+      const events: EventsGetResponse[] = res.data
+      setEvents(events)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
   return (
     <Box bgColor="#EDF2F6" h="92vh" w="85vw">
       <Center w="100%" h="100%">
@@ -40,32 +57,15 @@ export const List = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                  <Td m="5px">
-                    <Skeleton height="10px"></Skeleton>
-                  </Td>
-                  <Td m="5px">
-                    <Skeleton height="10px"></Skeleton>
-                  </Td>
-                  <Td></Td>
-                </Tr>
-                <Tr>
-                  <Td m="5px">
-                    <Skeleton height="10px"></Skeleton>
-                  </Td>
-                  <Td m="5px">
-                    <Skeleton height="10px"></Skeleton>
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td m="5px">
-                    <Skeleton height="10px"></Skeleton>
-                  </Td>
-                  <Td m="5px">
-                    <Skeleton height="10px"></Skeleton>
-                  </Td>
-                  <Td></Td>
-                </Tr>
+                {events.map((event, key) => (
+                  <Tr key={key}>
+                    <Td m="5px">{event.title}</Td>
+                    <Td m="5px">{event.scope}</Td>
+                    <Td m="5px">
+                      <img src="" />
+                    </Td>
+                  </Tr>
+                ))}
               </Tbody>
             </Table>
           </TableContainer>

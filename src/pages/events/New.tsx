@@ -1,12 +1,13 @@
 import React from 'react'
 import { Box } from '@chakra-ui/react'
 import { Template } from '../../components/Template'
+import { New as NewEvent } from '../../components/events/New'
 
 export const New = () => {
   return (
     <div>
       <Template>
-        <Box bgColor="#EDF2F6" h="92vh" w="85vw"></Box>
+        <NewEvent />
       </Template>
     </div>
   )
