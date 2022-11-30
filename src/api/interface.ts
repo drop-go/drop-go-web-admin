@@ -27,7 +27,7 @@ export interface EventPostRequest {
   endDate: number
   scope: 'public' | 'private' | 'hidden'
   description: string
-  imageDataURI: string
+  imageDataURI?: string
   title: string
   startDate: number
 }
