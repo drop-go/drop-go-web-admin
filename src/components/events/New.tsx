@@ -1,9 +1,10 @@
-import { Box, Button, Center, FormControl, FormLabel, Input, Text } from '@chakra-ui/react'
+import { Box, Button, Center, FormControl, FormLabel, Input, Text, Textarea } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import DatePicker, { registerLocale } from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import ja from 'date-fns/locale/ja'
+import { EventPostRequest } from '../../api/interface'
 
 registerLocale('ja', ja)
 
@@ -18,8 +19,17 @@ export const New = () => {
   const handleChangeStartDate = (date: Date) => setStartDate(date)
   const handleChangeEndDate = (date: Date) => setEndDate(date)
   const onSubmit = (data: any) => {
-    const { title } = data
-    const body = {}
+    const { title, description, address } = data
+    const body: EventPostRequest = {
+      address: address,
+      endDate: endDate.getTime(),
+      scope: 'public', // TODO: 固定値をはずす
+      title: title,
+      description: description,
+      startDate: startDate.getTime(),
+    }
+
+    console.log(body)
     // TODO: 登録処理
   }
 
@@ -30,7 +40,7 @@ export const New = () => {
           <Text fontSize="3xl" m="20px">
             イベント新規作成
           </Text>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl>
               <FormLabel>イベントタイトル</FormLabel>
               <Input
@@ -42,9 +52,21 @@ export const New = () => {
             </FormControl>
             <FormControl>
               <FormLabel>紹介文</FormLabel>
+              {
+                // TODO: placeholder内容
+              }
+              <Textarea
+                id="description"
+                placeholder="紹介文"
+                {...register('description', { required: '必須項目です' })}
+              />
             </FormControl>
             <FormControl>
               <FormLabel>イベント住所</FormLabel>
+              {
+                // TODO: placeholder内容
+              }
+              <Input id="address" type="text" placeholder="" {...register('address', { required: '必須項目です' })} />
             </FormControl>
             <FormControl>
               <FormLabel>開催期間（開始日）</FormLabel>
