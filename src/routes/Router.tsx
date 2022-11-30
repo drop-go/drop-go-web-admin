@@ -25,9 +25,11 @@ export const Router = () => {
                     <Routes>
                       <Route index element={<Events />} />
                       <Route path={'/new'} element={<NewEvent />} />
+                      <Route path={'*'} element={<NotFound />} />
                     </Routes>
                   }
                 />
+                <Route path={'*'} element={<NotFound />} />
               </Routes>
             ) : (
               <Navigate replace to={'/login'} />
