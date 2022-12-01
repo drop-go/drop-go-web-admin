@@ -29,8 +29,7 @@ export const New = () => {
   const onSubmit = (data: any) => {
     const { title, description, address } = data
     const header = {
-      'Content-Type': 'application/json',
-      Authorization: `Beaerer ${cookies.token}`,
+      Authorization: `Bearer ${cookies.token}`,
     }
     const body: EventPostRequest = {
       address: address,

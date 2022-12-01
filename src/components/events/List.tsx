@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Box,
   Center,
@@ -24,15 +24,17 @@ const url = `${API_URL}/event`
 export const List = () => {
   const [events, setEvents] = useState<EventsGetResponse[]>([])
   const [cookies] = useCookies(['token'])
-  axios
-    .get(url, { headers: { Authorization: `Bearer ${cookies.token}` } })
-    .then((res) => {
-      const events: EventsGetResponse[] = res.data
-      setEvents(events)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+  useEffect(() => {
+    axios
+      .get(url, { headers: { Authorization: `Bearer ${cookies.token}` } })
+      .then((res) => {
+        const events: EventsGetResponse[] = res.data
+        setEvents(events)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   return (
     <Box bgColor="#EDF2F6" h="92vh" w="85vw">
