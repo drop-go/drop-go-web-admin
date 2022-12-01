@@ -5,12 +5,20 @@ import DatePicker, { registerLocale } from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import ja from 'date-fns/locale/ja'
 import { EventPostRequest } from '../../api/interface'
+import { API_URL } from '../../consts/env'
+import axios from 'axios'
+import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
 
 registerLocale('ja', ja)
+const url = `${API_URL}/event`
 
 export const New = () => {
+  const [cookies] = useCookies(['token'])
   const [startDate, setStartDate] = useState<Date>(new Date())
   const [endDate, setEndDate] = useState<Date>(new Date())
+  const [error, setError] = useState('')
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -20,6 +28,10 @@ export const New = () => {
   const handleChangeEndDate = (date: Date) => setEndDate(date)
   const onSubmit = (data: any) => {
     const { title, description, address } = data
+    const header = {
+      'Content-Type': 'application/json',
+      Authorization: `Beaerer ${cookies.token}`,
+    }
     const body: EventPostRequest = {
       address: address,
       endDate: endDate.getTime(),
@@ -28,9 +40,20 @@ export const New = () => {
       description: description,
       startDate: startDate.getTime(),
     }
-
-    console.log(body)
+    if (startDate > endDate) {
+      setError('不正な日時指定')
+      return
+    }
     // TODO: 登録処理
+    axios
+      .post(url, body, { headers: header })
+      .then((res) => {
+        console.log(res.data.message)
+        navigate('/dashboard/events')
+      })
+      .catch((err) => {
+        setError(`エラー: ${err}`)
+      })
   }
 
   return (
@@ -40,6 +63,7 @@ export const New = () => {
           <Text fontSize="3xl" m="20px">
             イベント新規作成
           </Text>
+          <span>{error}</span>
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl>
               <FormLabel>イベントタイトル</FormLabel>

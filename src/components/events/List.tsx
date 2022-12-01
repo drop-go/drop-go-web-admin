@@ -20,7 +20,7 @@ import { API_URL } from '../../consts/env'
 import { useCookies } from 'react-cookie'
 import { EventsGetResponse } from '../../api/interface'
 
-const url = `${API_URL}/events`
+const url = `${API_URL}/event`
 export const List = () => {
   const [events, setEvents] = useState<EventsGetResponse[]>([])
   const [cookies] = useCookies(['token'])
