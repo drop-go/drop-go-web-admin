@@ -13,6 +13,7 @@ import {
   Th,
   Thead,
   Tr,
+  Image,
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -64,7 +65,7 @@ export const List = () => {
                     <Td m="5px">{event.title}</Td>
                     <Td m="5px">{event.scope}</Td>
                     <Td m="5px">
-                      <img src="" />
+                      <Image src={event.imageUrl} height="100px" />
                     </Td>
                   </Tr>
                 ))}
