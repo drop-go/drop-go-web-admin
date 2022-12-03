@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { Dashboard, Login, SignUp, Map, Events, NewEvent, NotFound } from '../pages'
+import { Dashboard, Login, SignUp, Map, Events, EventNew, EventDetail, NotFound } from '../pages'
 import { useCookies } from 'react-cookie'
 
 export const Router = () => {
@@ -24,7 +24,8 @@ export const Router = () => {
                   element={
                     <Routes>
                       <Route index element={<Events />} />
-                      <Route path={'/new'} element={<NewEvent />} />
+                      <Route path={'/new'} element={<EventNew />} />
+                      <Route path={'/:eventId'} element={<EventDetail />} />
                       <Route path={'*'} element={<NotFound />} />
                     </Routes>
                   }

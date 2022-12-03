@@ -62,11 +62,13 @@ export const List = () => {
               <Tbody>
                 {events.map((event, key) => (
                   <Tr key={key}>
-                    <Td m="5px">{event.title}</Td>
-                    <Td m="5px">{event.scope}</Td>
-                    <Td m="5px">
-                      <Image src={event.imageUrl} height="100px" />
-                    </Td>
+                    <Link to={`/dashboard/events/${event.id}`}>
+                      <Td m="5px">{event.title}</Td>
+                      <Td m="5px">{event.scope}</Td>
+                      <Td m="5px">
+                        <Image src={event.imageUrl} height="100px" />
+                      </Td>
+                    </Link>
                   </Tr>
                 ))}
               </Tbody>
