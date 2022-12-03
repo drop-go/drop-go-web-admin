@@ -32,7 +32,8 @@ export const LoginForm = () => {
         navigate('/dashboard')
       })
       .catch((err) => {
-        setError(`エラー: ${err}`)
+        console.log(err)
+        setError(`エラー: ${err.response.data.message}`)
       })
   }
 
