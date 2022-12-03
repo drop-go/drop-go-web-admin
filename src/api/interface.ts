@@ -76,10 +76,8 @@ export interface EventDeleteResponse {
 export interface ItemsGetResponse {
   eventId: string
   createdAt: number
-  coordinate: {
-    latitude: string
-    longitude: string
-  }
+  latitude: string
+  longitude: string
   scope: 'public' | 'private' | 'hidden'
   description: string
   id: string
@@ -89,15 +87,13 @@ export interface ItemsGetResponse {
 }
 
 export interface ItemPostRequest {
-  eventId: string
   file: {
+    fileName: string
     dataURI: string
     type: string
   }
-  coordinate: {
-    latitude: string
-    longitude: string
-  }
+  latitude: string
+  longitude: string
   scope: 'public' | 'private' | 'hidden'
   description: string
   title: string

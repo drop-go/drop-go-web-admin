@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Dashboard, Login, SignUp, Map, Events, EventNew, EventDetail, NotFound } from '../pages'
 import { useCookies } from 'react-cookie'
+import { FileNew } from '../pages/events/files/FileNew'
 
 export const Router = () => {
   const [cookies] = useCookies(['token'])
@@ -25,7 +26,22 @@ export const Router = () => {
                     <Routes>
                       <Route index element={<Events />} />
                       <Route path={'/new'} element={<EventNew />} />
-                      <Route path={'/:eventId'} element={<EventDetail />} />
+                      <Route
+                        path={'/:eventId/*'}
+                        element={
+                          <Routes>
+                            <Route index element={<EventDetail />} />
+                            <Route
+                              path={'/file/*'}
+                              element={
+                                <Routes>
+                                  <Route path={'/new'} element={<FileNew />} />
+                                </Routes>
+                              }
+                            />
+                          </Routes>
+                        }
+                      />
                       <Route path={'*'} element={<NotFound />} />
                     </Routes>
                   }

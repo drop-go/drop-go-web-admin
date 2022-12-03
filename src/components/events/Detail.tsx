@@ -12,11 +12,12 @@ import {
   Tbody,
   Td,
   SelectField,
+  Spacer,
 } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { EventsGetResponse, ItemsGetResponse } from '../../api/interface'
 import { API_URL } from '../../consts/env'
 
@@ -39,7 +40,7 @@ export const Detail = () => {
     axios
       .get(url + '/item', { headers: { Authorization: `Bearer ${cookies.token}` } })
       .then((res) => {
-        SelectField(res.data)
+        setItems(res.data)
       })
       .catch((err) => {
         console.log(err)
@@ -49,9 +50,11 @@ export const Detail = () => {
     <Box bgColor="#EDF2F6" h="92vh" w="85vw">
       <Center w="100%" h="100%">
         <Box w="80vw" h="85vh" bg="white" m="auto">
+          <Text fontSize="3xl" m="20px">
+            {event?.title}
+          </Text>
           <Flex>
             <Box m="20px" w="50%">
-              <Text fontSize="3xl">{event?.title}</Text>
               <Text fontSize="2xl">詳細</Text>
               <Text>{event?.description}</Text>
               <Image src={event?.imageUrl} h="200px" />
@@ -63,7 +66,13 @@ export const Detail = () => {
               <Text>{event?.endDate}</Text>
             </Box>
             <Box m="20px" w="50%">
-              <Text>ファイル一覧</Text>
+              <Flex>
+                <Text>ファイル一覧</Text>
+                <Spacer />
+                <Link to={`/dashboard/events/${eventId}/file/new`}>
+                  <Text>ファイル新規登録</Text>
+                </Link>
+              </Flex>
               <TableContainer>
                 <Table variant="simple">
                   <Thead>
@@ -77,7 +86,7 @@ export const Detail = () => {
                       <Tr key={key}>
                         <Td>{item.title}</Td>
                         <Td>
-                          {item.coordinate.latitude}・{item.coordinate.latitude}
+                          {item.latitude}・{item.longitude}
                         </Td>
                       </Tr>
                     ))}
