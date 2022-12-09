@@ -24,6 +24,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { ItemPostRequest } from '../../../api/interface'
 import { API_URL } from '../../../consts/env'
 import { DEFAULT_LAT, DEFAULT_LNG, DEFAULT_ZOOM } from '../../../consts/mapParams'
+import { useFile } from '../../../hooks/useFile'
 
 const center = {
   lat: DEFAULT_LAT,
@@ -34,10 +35,8 @@ export const FileNewForm = () => {
   const zoom = DEFAULT_ZOOM
   const [cookies] = useCookies(['token'])
   const [radius, setRadius] = useState(30)
-  const [file, setFile] = useState<string>()
-  const [fileName, setFileName] = useState<string>()
-  const [fileType, setFileType] = useState<string>()
   const [latLng, setLatLng] = useState<{ lat: number; lng: number }>(center)
+  const { strFile, fileName, fileType, error, setFile } = useFile()
   const {
     register,
     handleSubmit,
@@ -46,20 +45,7 @@ export const FileNewForm = () => {
   const { eventId } = useParams()
   const navigate = useNavigate()
   const handleChangeSlider = (radius: number) => setRadius(radius)
-  const handleChangeFile = async (e: ChangeEvent<HTMLInputElement>) => {
-    const fileReader = new FileReader()
-    fileReader.onload = function () {
-      const result = this.result
-      if (typeof result !== 'string') return console.log('error size')
-      setFile(result)
-    }
-    const files = e.target.files
-    if (files === null) return
-    if (files[0].size > 1024 * 1024 * 5) return
-    setFileType(files[0].name.split('.').pop())
-    setFileName(files[0].name.split('.').shift())
-    fileReader.readAsDataURL(files[0])
-  }
+  const handleChangeFile = async (e: ChangeEvent<HTMLInputElement>) => setFile(e.target.files)
   const handleChangeMap = (e: any) => {
     const { lat, lng } = e.latLng
     setLatLng({
@@ -75,7 +61,7 @@ export const FileNewForm = () => {
     const body: ItemPostRequest = {
       file: {
         fileName: fileName || '', // TODO: undefined除去
-        dataURI: file || '', // TODO: undefined除去
+        dataURI: strFile || '', // TODO: undefined除去
         type: fileType || '', // TODO: undefined除去
       },
       latitude: String(latLng.lat),

@@ -1,41 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import { FormErrorMessage, FormLabel, FormControl, Input, Button, Center } from '@chakra-ui/react'
-import { useNavigate } from 'react-router-dom'
-import { useCookies } from 'react-cookie'
-import axios from 'axios'
-import { API_URL } from '../consts/env'
-
-const url = `${API_URL}/auth`
+import { useAuthQuery } from '../hooks/useAuthQuery'
 
 export const LoginForm = () => {
-  const [cookies, setCookie] = useCookies(['token'])
-  const [error, setError] = useState('')
+  const { error, login } = useAuthQuery()
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm()
-  const navigate = useNavigate()
-  const onSubmit = (data: any) => {
-    const { email, password } = data
-    const body = {
-      email: email,
-      password: password,
-    }
 
-    axios
-      .post(url, body)
-      .then((res) => {
-        const token = res.data.token
-        setCookie('token', token)
-        navigate('/dashboard')
-      })
-      .catch((err) => {
-        console.log(err)
-        setError(`エラー: ${err.response.data.message}`)
-      })
-  }
+  const onSubmit = (data: any) => login(data)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
