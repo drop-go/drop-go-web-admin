@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Dashboard, Login, SignUp, Map, Events, EventNew, EventDetail, NotFound } from '../pages'
 import { useCookies } from 'react-cookie'
 import { FileNew } from '../pages/events/files/FileNew'
+import { Analytics } from '../pages/Analytics'
 
 export const Router = () => {
   const [cookies] = useCookies(['token'])
@@ -46,6 +47,7 @@ export const Router = () => {
                     </Routes>
                   }
                 />
+                <Route path={'/analytics'} element={<Analytics />} />
                 <Route path={'*'} element={<NotFound />} />
               </Routes>
             ) : (
