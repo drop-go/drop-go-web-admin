@@ -1,7 +1,6 @@
 import axios from 'axios'
-import { useState } from 'react'
 import { useCookies } from 'react-cookie'
-import { selector, selectorFamily, useRecoilValue } from 'recoil'
+import { selectorFamily, useRecoilValue } from 'recoil'
 import { API_URL } from '../consts/env'
 
 export const useGetAnalytics = () => {

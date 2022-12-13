@@ -1,5 +1,6 @@
 import { Box, Center, Skeleton, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
 import React, { Suspense } from 'react'
+import { ErrorBoundary } from '../ErrorBoundary'
 import { AnalyticsTable } from './AnalyticsTable'
 
 export const Detail = () => {
@@ -23,9 +24,11 @@ export const Detail = () => {
                   <Th>ID</Th>
                 </Tr>
               </Thead>
-              <Suspense fallback={<Loading />}>
-                <AnalyticsTable />
-              </Suspense>
+              <ErrorBoundary fallback={<ErrorResult />}>
+                <Suspense fallback={<Loading />}>
+                  <AnalyticsTable />
+                </Suspense>
+              </ErrorBoundary>
             </Table>
           </TableContainer>
         </Box>
@@ -96,6 +99,16 @@ const Loading = () => {
         <Td>
           <Skeleton height="10px"></Skeleton>
         </Td>
+      </Tr>
+    </Tbody>
+  )
+}
+
+const ErrorResult = () => {
+  return (
+    <Tbody>
+      <Tr>
+        <Td colSpan={6}>データを取得できませんでした。時間をおいて再度お試しください。</Td>
       </Tr>
     </Tbody>
   )
