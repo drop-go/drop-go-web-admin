@@ -1,4 +1,4 @@
-import { Box, Button, Center, FormControl, FormLabel, Input, Text, Textarea } from '@chakra-ui/react'
+import { Box, Button, Center, Flex, FormControl, FormLabel, Input, Spacer, Text, Textarea } from '@chakra-ui/react'
 import React, { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import DatePicker, { registerLocale } from 'react-datepicker'
@@ -8,7 +8,8 @@ import { EventPostRequest } from '../../api/interface'
 import { API_URL } from '../../consts/env'
 import axios from 'axios'
 import { useCookies } from 'react-cookie'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { CloseIcon } from '@chakra-ui/icons'
 
 registerLocale('ja', ja)
 const url = `${API_URL}/event`
@@ -71,16 +72,24 @@ export const New = () => {
       })
   }
 
+  const onBack = () => navigate(-1)
+
   return (
     <Box bgColor="#EDF2F6" h="92vh" w="85vw">
       <Center w="100%" h="100%">
-        <Box w="80vw" h="85vh" bg="white" m="auto">
-          <Text fontSize="3xl" m="20px">
-            イベント新規作成
-          </Text>
+        <Box w="70vw" h="85vh" bg="white" m="auto"  px='16px'>
+          <Flex>
+            <Text fontSize="3xl" m="20px">
+              イベント新規作成
+            </Text>
+            <Spacer/>
+            <Center pr='16px'>
+              <CloseIcon onClick={onBack}/>
+            </Center>
+          </Flex>
           <span>{error}</span>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <FormControl>
+            <FormControl mb='16px'>
               <FormLabel>イベントタイトル</FormLabel>
               <Input
                 id="title"
@@ -89,7 +98,7 @@ export const New = () => {
                 {...register('title', { required: '必須項目です' })}
               />
             </FormControl>
-            <FormControl>
+            <FormControl mb='16px'>
               <FormLabel>紹介文</FormLabel>
               {
                 // TODO: placeholder内容
@@ -100,26 +109,26 @@ export const New = () => {
                 {...register('description', { required: '必須項目です' })}
               />
             </FormControl>
-            <FormControl>
+            <FormControl mb='16px'>
               <FormLabel>イベント住所</FormLabel>
               {
                 // TODO: placeholder内容
               }
-              <Input id="address" type="text" placeholder="" {...register('address', { required: '必須項目です' })} />
+              <Input id="address" type="text" placeholder="東京都千代田区" {...register('address', { required: '必須項目です' })} />
             </FormControl>
-            <FormControl>
+            <FormControl mb='16px'>
               <FormLabel>開催期間（開始日）</FormLabel>
-              <DatePicker selected={startDate} onChange={handleChangeStartDate} locale="ja" />
+              <DatePicker selected={startDate} onChange={handleChangeStartDate} locale="ja" dateFormat='yyyy/MM/dd' />
             </FormControl>
-            <FormControl>
+            <FormControl mb='16px'>
               <FormLabel>開催期間（終了日）</FormLabel>
-              <DatePicker selected={endDate} onChange={handleChangeEndDate} locale="ja" />
+              <DatePicker selected={endDate} onChange={handleChangeEndDate} locale="ja" dateFormat='yyyy/MM/dd'/>
             </FormControl>
-            <FormControl>
+            <FormControl mb='32px'>
               <FormLabel>サムネイル</FormLabel>
               <input type="file" onChange={handleChangeFile} />
             </FormControl>
-            <Button type="submit" isLoading={isSubmitting}>
+            <Button type="submit" isLoading={isSubmitting} colorScheme="brand" px='24'>
               作成
             </Button>
           </form>
