@@ -25,6 +25,7 @@ import { ItemPostRequest } from '../../../api/interface'
 import { API_URL } from '../../../consts/env'
 import { DEFAULT_LAT, DEFAULT_LNG, DEFAULT_ZOOM } from '../../../consts/mapParams'
 import { useFile } from '../../../hooks/useFile'
+import { createHeader } from '../../../utils'
 
 const center = {
   lat: DEFAULT_LAT,
@@ -55,9 +56,6 @@ export const FileNewForm = () => {
   }
   const onSubmit = (data: any) => {
     const { title, scope, description } = data
-    const header = {
-      Authorization: `Bearer ${cookies.token}`,
-    }
     const body: ItemPostRequest = {
       file: {
         fileName: fileName || '', // TODO: undefined除去
@@ -74,7 +72,7 @@ export const FileNewForm = () => {
     const url = `${API_URL}/event/${eventId}/item`
 
     axios
-      .post(url, body, { headers: header })
+      .post(url, body, createHeader(cookies.token))
       .then((res) => {
         console.log(res.data.message)
         navigate(`/dashboard/events/${eventId}`)

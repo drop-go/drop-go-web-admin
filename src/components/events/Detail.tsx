@@ -11,7 +11,6 @@ import {
   Th,
   Tbody,
   Td,
-  SelectField,
   Spacer,
 } from '@chakra-ui/react'
 import axios from 'axios'
@@ -20,6 +19,7 @@ import { useCookies } from 'react-cookie'
 import { Link, useParams } from 'react-router-dom'
 import { EventsGetResponse, ItemsGetResponse } from '../../api/interface'
 import { API_URL } from '../../consts/env'
+import { createHeader } from '../../utils'
 
 export const Detail = () => {
   const { eventId } = useParams()
@@ -38,7 +38,7 @@ export const Detail = () => {
         console.log(err)
       })
     axios
-      .get(url + '/item', { headers: { Authorization: `Bearer ${cookies.token}` } })
+      .get(url + '/item', createHeader(cookies.token))
       .then((res) => {
         setItems(res.data)
       })

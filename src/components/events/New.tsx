@@ -10,6 +10,7 @@ import axios from 'axios'
 import { useCookies } from 'react-cookie'
 import { Link, useNavigate } from 'react-router-dom'
 import { CloseIcon } from '@chakra-ui/icons'
+import { createHeader } from '../../utils'
 
 registerLocale('ja', ja)
 const url = `${API_URL}/event`
@@ -42,9 +43,7 @@ export const New = () => {
   }
   const onSubmit = (data: any) => {
     const { title, description, address } = data
-    const header = {
-      Authorization: `Bearer ${cookies.token}`,
-    }
+    const header = createHeader(cookies.token)
     const body: EventPostRequest = {
       address: address,
       endDate: endDate.getTime(),
@@ -62,7 +61,7 @@ export const New = () => {
     }
     // TODO: 登録処理
     axios
-      .post(url, body, { headers: header })
+      .post(url, body, header)
       .then((res) => {
         console.log(res.data.message)
         navigate('/dashboard/events')
@@ -77,19 +76,19 @@ export const New = () => {
   return (
     <Box bgColor="#EDF2F6" h="92vh" w="85vw">
       <Center w="100%" h="100%">
-        <Box w="70vw" h="85vh" bg="white" m="auto"  px='16px'>
+        <Box w="70vw" h="85vh" bg="white" m="auto" px="16px">
           <Flex>
             <Text fontSize="3xl" m="20px">
               イベント新規作成
             </Text>
-            <Spacer/>
-            <Center pr='16px'>
-              <CloseIcon onClick={onBack}/>
+            <Spacer />
+            <Center pr="16px">
+              <CloseIcon onClick={onBack} />
             </Center>
           </Flex>
           <span>{error}</span>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <FormControl mb='16px'>
+            <FormControl mb="16px">
               <FormLabel>イベントタイトル</FormLabel>
               <Input
                 id="title"
@@ -98,7 +97,7 @@ export const New = () => {
                 {...register('title', { required: '必須項目です' })}
               />
             </FormControl>
-            <FormControl mb='16px'>
+            <FormControl mb="16px">
               <FormLabel>紹介文</FormLabel>
               {
                 // TODO: placeholder内容
@@ -109,26 +108,31 @@ export const New = () => {
                 {...register('description', { required: '必須項目です' })}
               />
             </FormControl>
-            <FormControl mb='16px'>
+            <FormControl mb="16px">
               <FormLabel>イベント住所</FormLabel>
               {
                 // TODO: placeholder内容
               }
-              <Input id="address" type="text" placeholder="東京都千代田区" {...register('address', { required: '必須項目です' })} />
+              <Input
+                id="address"
+                type="text"
+                placeholder="東京都千代田区"
+                {...register('address', { required: '必須項目です' })}
+              />
             </FormControl>
-            <FormControl mb='16px'>
+            <FormControl mb="16px">
               <FormLabel>開催期間（開始日）</FormLabel>
-              <DatePicker selected={startDate} onChange={handleChangeStartDate} locale="ja" dateFormat='yyyy/MM/dd' />
+              <DatePicker selected={startDate} onChange={handleChangeStartDate} locale="ja" dateFormat="yyyy/MM/dd" />
             </FormControl>
-            <FormControl mb='16px'>
+            <FormControl mb="16px">
               <FormLabel>開催期間（終了日）</FormLabel>
-              <DatePicker selected={endDate} onChange={handleChangeEndDate} locale="ja" dateFormat='yyyy/MM/dd'/>
+              <DatePicker selected={endDate} onChange={handleChangeEndDate} locale="ja" dateFormat="yyyy/MM/dd" />
             </FormControl>
-            <FormControl mb='32px'>
+            <FormControl mb="32px">
               <FormLabel>サムネイル</FormLabel>
               <input type="file" onChange={handleChangeFile} />
             </FormControl>
-            <Button type="submit" isLoading={isSubmitting} colorScheme="brand" px='24'>
+            <Button type="submit" isLoading={isSubmitting} colorScheme="brand" px="24">
               作成
             </Button>
           </form>
