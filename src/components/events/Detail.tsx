@@ -1,51 +1,12 @@
-import {
-  Box,
-  Center,
-  Text,
-  Image,
-  Flex,
-  TableContainer,
-  Table,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-  SelectField,
-  Spacer,
-} from '@chakra-ui/react'
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { useCookies } from 'react-cookie'
+import { Box, Text, Image, Flex, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Spacer } from '@chakra-ui/react'
+import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { EventsGetResponse, ItemsGetResponse } from '../../api/interface'
-import { API_URL } from '../../consts/env'
+import { useGetEventDetailQuery } from '../../hooks/useGetEventDetailQuery'
 
 export const Detail = () => {
   const { eventId } = useParams()
-  const [cookies] = useCookies(['token'])
-  const [event, setEvent] = useState<EventsGetResponse>()
-  const [items, setItems] = useState<ItemsGetResponse[]>([])
-  const url = `${API_URL}/event/${eventId}`
-  useEffect(() => {
-    axios
-      .get(url, { headers: { Authorization: `Bearer ${cookies.token}` } })
-      .then((res) => {
-        const event: EventsGetResponse = res.data
-        setEvent(event)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    axios
-      .get(url + '/item', { headers: { Authorization: `Bearer ${cookies.token}` } })
-      .then((res) => {
-        setItems(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
+  const { event, items } = useGetEventDetailQuery(eventId || '')
+
   return (
     <>
       <Text fontSize="3xl" m="20px">
