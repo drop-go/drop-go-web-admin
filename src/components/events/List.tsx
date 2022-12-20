@@ -5,11 +5,11 @@ import { EventsGetResponse } from '../../api/interface'
 import { useGetEventsQuery } from '../../hooks/useGetEventsQuery'
 
 export const List = () => {
-  const events: any = useGetEventsQuery()
+  const { events } = useGetEventsQuery()
   return (
     <Tbody>
       {events.length ? (
-        events.data.map((event: EventsGetResponse, key: number) => (
+        events.map((event: EventsGetResponse, key: number) => (
           <Tr key={key}>
             <Link to={`/dashboard/events/${event.id}`}>
               <Td m="5px">{event.title}</Td>

@@ -1,14 +1,13 @@
 import axios from 'axios'
-import { selector } from 'recoil'
+import { selectorFamily } from 'recoil'
 import { API_URL } from '../consts/env'
-import { authState } from './authState'
 
 const url = `${API_URL}/event`
 
-export const getEventsState = selector({
+export const getEventsState = selectorFamily<any, string>({
   key: 'getEvents',
-  get: async ({ get }) => {
+  get: (token) => async () => {
     // TODO: createHeader()
-    return axios.get(url, { headers: { Authorization: `Bearer ${get(authState)}` } })
+    return axios.get(url, { headers: { Authorization: `Bearer ${token}` } })
   },
 })

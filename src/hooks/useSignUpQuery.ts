@@ -6,13 +6,11 @@ import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { UserPostRequest } from '../api/interface'
 import { API_URL } from '../consts/env'
-import { authState } from '../globalStates/authState'
 
 const url = `${API_URL}/user`
 
 export const useSignUpQuery = () => {
   const [cookies, setCookie] = useCookies(['token'])
-  const setAuthState = useSetRecoilState(authState)
   const [error, setError] = useState('')
   const {
     register,
@@ -35,7 +33,6 @@ export const useSignUpQuery = () => {
       .then((res) => {
         const token = res.data.token
         setCookie('token', token)
-        setAuthState(token)
         navigate('/dashboard')
       })
       .catch((err) => {
