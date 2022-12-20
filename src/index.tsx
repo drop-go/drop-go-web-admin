@@ -2,13 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
-import { Router } from './routes/Router'
 import { ChakraProvider } from '@chakra-ui/react'
 import { RecoilRoot } from 'recoil'
 import { CookiesProvider } from 'react-cookie'
 import { theme } from './theme'
 import { LoadScript } from '@react-google-maps/api'
 import { MAP_API_KEY } from './consts/env'
+import { App } from './App'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
@@ -17,7 +17,7 @@ root.render(
       <RecoilRoot>
         <ChakraProvider theme={theme}>
           <LoadScript googleMapsApiKey={MAP_API_KEY}>
-            <Router />
+            <App />
           </LoadScript>
         </ChakraProvider>
       </RecoilRoot>
