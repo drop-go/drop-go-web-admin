@@ -5,7 +5,7 @@ import { authState } from './globalStates/authState'
 import { Router } from './routes/Router'
 
 export const App = () => {
-  const [cookies, setCookie] = useCookies(['token'])
+  const [cookies] = useCookies(['token'])
   const setAuth = useSetRecoilState(authState)
   useEffect(() => {
     setAuth(cookies.token)
