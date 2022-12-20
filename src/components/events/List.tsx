@@ -20,6 +20,7 @@ import axios from 'axios'
 import { API_URL } from '../../consts/env'
 import { useCookies } from 'react-cookie'
 import { EventsGetResponse } from '../../api/interface'
+import { createHeader } from '../../utils'
 
 const url = `${API_URL}/event`
 export const List = () => {
@@ -27,7 +28,7 @@ export const List = () => {
   const [cookies] = useCookies(['token'])
   useEffect(() => {
     axios
-      .get(url, { headers: { Authorization: `Bearer ${cookies.token}` } })
+      .get(url, createHeader(cookies.token))
       .then((res) => {
         const events: EventsGetResponse[] = res.data
         setEvents(events)
