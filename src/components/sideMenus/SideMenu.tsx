@@ -31,9 +31,11 @@ export const SideMenu = () => {
         </Link>
       </Box>
       <Box h="7vh" w="100%" borderBottom="1px" borderColor="brand.50">
-        <Center h="100%" w="100%">
-          Analytics
-        </Center>
+        <Link to={'/dashboard/analytics'}>
+          <Center h="100%" w="100%">
+            Analytics
+          </Center>
+        </Link>
       </Box>
       <Box h="7vh" w="100%" borderBottom="1px" borderColor="brand.50">
         <Center h="100%" w="100%">
