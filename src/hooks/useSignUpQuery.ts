@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useCookies } from 'react-cookie'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { useSetRecoilState } from 'recoil'
 import { UserPostRequest } from '../api/interface'
 import { API_URL } from '../consts/env'
 

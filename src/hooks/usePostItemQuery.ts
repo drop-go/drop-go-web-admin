@@ -19,7 +19,7 @@ export const usePostItemQuery = () => {
   const [cookies] = useCookies(['token'])
   const [radius, setRadius] = useState(30)
   const [latLng, setLatLng] = useState<{ lat: number; lng: number }>(center)
-  const { strFile, fileName, fileType, error, setFile } = useFile()
+  const { strFile, fileName, fileType, setFile } = useFile()
   const {
     register,
     handleSubmit,
