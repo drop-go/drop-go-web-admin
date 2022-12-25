@@ -4,8 +4,6 @@ import DatePicker, { registerLocale } from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import ja from 'date-fns/locale/ja'
 import { CloseIcon } from '@chakra-ui/icons'
-import { usePostEventQuery } from '../../hooks/usePostEventQuery'
-import { useOnBack } from '../../hooks/useOnBack'
 
 registerLocale('ja', ja)
 
@@ -32,6 +30,9 @@ export const New = () => {
             <Text fontSize="3xl" m="20px">
               イベント新規作成
             </Text>
+            <Spacer />
+            <Center pr="16px">
+              <CloseIcon onClick={onBack} />
             <Spacer />
             <Center pr="16px">
               <CloseIcon onClick={onBack} />
