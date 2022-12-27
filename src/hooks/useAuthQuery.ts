@@ -20,7 +20,6 @@ export const useAuthQuery = () => {
         navigate('/dashboard')
       })
       .catch((err) => {
-        console.log(err)
         setError(`エラー: ${err.response.data.message}`)
       })
   }

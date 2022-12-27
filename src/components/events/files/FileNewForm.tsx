@@ -16,71 +16,29 @@ import {
   Textarea,
 } from '@chakra-ui/react'
 import { GoogleMap, Marker } from '@react-google-maps/api'
-import axios from 'axios'
-import React, { ChangeEvent, useState } from 'react'
-import { useCookies } from 'react-cookie'
-import { useForm } from 'react-hook-form'
-import { useNavigate, useParams } from 'react-router-dom'
-import { ItemPostRequest } from '../../../api/interface'
-import { API_URL } from '../../../consts/env'
+import React from 'react'
 import { DEFAULT_LAT, DEFAULT_LNG, DEFAULT_ZOOM } from '../../../consts/mapParams'
-import { useFile } from '../../../hooks/useFile'
-import { createHeader } from '../../../utils'
+import { usePostItemQuery } from '../../../hooks/usePostItemQuery'
 
 const center = {
   lat: DEFAULT_LAT,
   lng: DEFAULT_LNG,
 }
 
+const zoom = DEFAULT_ZOOM
+
 export const FileNewForm = () => {
-  const zoom = DEFAULT_ZOOM
-  const [cookies] = useCookies(['token'])
-  const [radius, setRadius] = useState(30)
-  const [latLng, setLatLng] = useState<{ lat: number; lng: number }>(center)
-  const { strFile, fileName, fileType, error, setFile } = useFile()
   const {
+    radius,
+    latLng,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm()
-  const { eventId } = useParams()
-  const navigate = useNavigate()
-  const handleChangeSlider = (radius: number) => setRadius(radius)
-  const handleChangeFile = async (e: ChangeEvent<HTMLInputElement>) => setFile(e.target.files)
-  const handleChangeMap = (e: any) => {
-    const { lat, lng } = e.latLng
-    setLatLng({
-      lat: lat(),
-      lng: lng(),
-    })
-  }
-  const onSubmit = (data: any) => {
-    const { title, scope, description } = data
-    const body: ItemPostRequest = {
-      file: {
-        fileName: fileName || '', // TODO: undefined除去
-        dataURI: strFile || '', // TODO: undefined除去
-        type: fileType || '', // TODO: undefined除去
-      },
-      latitude: String(latLng.lat),
-      longitude: String(latLng.lng),
-      scope: scope,
-      description: description,
-      title: title,
-      radius: radius,
-    }
-    const url = `${API_URL}/event/${eventId}/item`
-
-    axios
-      .post(url, body, createHeader(cookies.token))
-      .then((res) => {
-        console.log(res.data.message)
-        navigate(`/dashboard/events/${eventId}`)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
+    handleChangeSlider,
+    handleChangeFile,
+    handleChangeMap,
+    onSubmit,
+  } = usePostItemQuery()
   return (
     <Box bgColor="#EDF2F6" h="92vh" w="85vw">
       <Center w="100%" h="100%">

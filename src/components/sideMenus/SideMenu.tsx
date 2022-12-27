@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 
 export const SideMenu = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['token'])
+  const [_cookies, _setCookie, removeCookie] = useCookies(['token'])
   const signOut = () => removeCookie('token')
   return (
     <VStack bgColor="brand.500" w="50px" color="white" h="92vh" width="15vw">

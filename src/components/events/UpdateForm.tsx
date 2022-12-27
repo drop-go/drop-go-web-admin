@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetEventQuery } from '../../hooks/useGetEventQuery'
-import { Button, FormControl, FormLabel, Input, Text, Textarea } from '@chakra-ui/react'
+import { Button, FormControl, FormLabel, Input, Textarea } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import ja from 'date-fns/locale/ja'
 import DatePicker, { registerLocale } from 'react-datepicker'
@@ -21,9 +21,9 @@ export const UpdateForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = useForm()
-  const onSubmit = (data: any) => {
+  const onSubmit = () => {
     return
   }
   return (
