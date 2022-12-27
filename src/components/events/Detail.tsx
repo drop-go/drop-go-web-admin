@@ -2,6 +2,7 @@ import { Box, Text, Image, Flex, TableContainer, Table, Thead, Tr, Th, Tbody, Td
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useGetEventDetailQuery } from '../../hooks/useGetEventDetailQuery'
+import { unixToDate } from '../../utils'
 
 export const Detail = () => {
   const { eventId } = useParams()
@@ -20,9 +21,9 @@ export const Detail = () => {
           <Text>公開設定</Text>
           <Text>{event?.scope}</Text>
           <Text>開始日</Text>
-          <Text>{event?.startDate}</Text>
+          <Text>{unixToDate(event?.startDate)}</Text>
           <Text>終了日</Text>
-          <Text>{event?.endDate}</Text>
+          <Text>{unixToDate(event?.endDate)}</Text>
         </Box>
         <Box m="20px" w="50%">
           <Flex>
