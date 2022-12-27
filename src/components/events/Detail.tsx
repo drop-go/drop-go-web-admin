@@ -69,6 +69,9 @@ export const Detail = () => {
               <Flex>
                 <Text>ファイル一覧</Text>
                 <Spacer />
+                <Link to={`/dashboard/events/${eventId}/update`}>
+                  <Text>イベントの編集</Text>
+                </Link>
                 <Link to={`/dashboard/events/${eventId}/file/new`}>
                   <Text>ファイル新規登録</Text>
                 </Link>

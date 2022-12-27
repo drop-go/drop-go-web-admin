@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Dashboard, Login, SignUp, Map, Events, EventNew, EventDetail, NotFound } from '../pages'
 import { useCookies } from 'react-cookie'
 import { FileNew } from '../pages/events/files/FileNew'
+import { EventUpdate } from '../pages/events'
 import { Analytics } from '../pages/Analytics'
 
 export const Router = () => {
@@ -32,6 +33,7 @@ export const Router = () => {
                         element={
                           <Routes>
                             <Route index element={<EventDetail />} />
+                            <Route path={'/update'} element={<EventUpdate />} />
                             <Route
                               path={'/file/*'}
                               element={
