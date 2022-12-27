@@ -1,4 +1,18 @@
-import { Box, Text, Image, Flex, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Spacer } from '@chakra-ui/react'
+import {
+  Box,
+  Text,
+  Image,
+  Flex,
+  TableContainer,
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
+  Spacer,
+  Button,
+} from '@chakra-ui/react'
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useGetEventDetailQuery } from '../../hooks/useGetEventDetailQuery'
@@ -30,7 +44,7 @@ export const Detail = () => {
             <Text>ファイル一覧</Text>
             <Spacer />
             <Link to={`/dashboard/events/${eventId}/update`}>
-              <Text>イベントの編集</Text>
+              <Button colorScheme="brand">イベントの編集</Button>
             </Link>
             <Link to={`/dashboard/events/${eventId}/file/new`}>
               <Text>ファイル新規登録</Text>
