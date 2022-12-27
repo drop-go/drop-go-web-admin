@@ -17,7 +17,7 @@ export const useFile = () => {
       setError('ファイルが見つかりません。')
       return
     }
-    // 5MB
+    // NOTE: 5MB
     if (files[0].size > 1024 * 1024 * 5) {
       setError('ファイルサイズが大きすぎます。（最大5MB）')
       return

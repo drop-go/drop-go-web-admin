@@ -79,6 +79,7 @@ export const useUpdateEventQuery = (eventId: string) => {
     onSubmit,
     startDate,
     endDate,
+    error,
     handleChangeStartDate,
     handleChangeEndDate,
     handleChangeFile,

@@ -3,13 +3,16 @@ import { ChangeEvent, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { useRecoilRefresher_UNSTABLE } from 'recoil'
 import { EventPostRequest } from '../api/interface'
 import { API_URL } from '../consts/env'
+import { getEventsState } from '../globalStates/getEventsState'
 
 const url = `${API_URL}/event`
 
 export const usePostEventQuery = () => {
   const [cookies] = useCookies(['token'])
+  const refresh = useRecoilRefresher_UNSTABLE(getEventsState(cookies.token))
   const [startDate, setStartDate] = useState<Date>(new Date())
   const [endDate, setEndDate] = useState<Date>(new Date())
   const [file, setFile] = useState<string>()
@@ -59,6 +62,7 @@ export const usePostEventQuery = () => {
       .post(url, body, { headers: header })
       .then((res) => {
         console.log(res.data.message)
+        refresh()
         navigate('/dashboard/events')
       })
       .catch((err) => {
