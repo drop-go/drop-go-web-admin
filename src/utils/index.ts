@@ -11,7 +11,4 @@ export const unixToDate = (unixTime: number) => {
   return String(date.getFullYear() + '年' + Number(date.getMonth() + 1) + '月' + date.getDate() + '日')
 }
 
-// TODO
-export const dateToUnix = (date: Date) => {
-  return
-}
+export const dateToUnix = (date: string): number => new Date(date.replace(/日/, '').replace(/[年月]+/g, '-')).getTime()

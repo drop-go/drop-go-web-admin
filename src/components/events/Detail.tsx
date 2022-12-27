@@ -15,12 +15,14 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useDeleteEvnetQuery } from '../../hooks/useDeleteEventQuery'
 import { useGetEventDetailQuery } from '../../hooks/useGetEventDetailQuery'
 import { unixToDate } from '../../utils'
 
 export const Detail = () => {
   const { eventId } = useParams()
   const { event, items } = useGetEventDetailQuery(eventId || '')
+  const { handleChangeDelete } = useDeleteEvnetQuery(eventId || '')
 
   return (
     <>
@@ -43,6 +45,7 @@ export const Detail = () => {
           <Flex>
             <Text>ファイル一覧</Text>
             <Spacer />
+            <Button onClick={handleChangeDelete}>イベントを削除する</Button>
             <Link to={`/dashboard/events/${eventId}/update`}>
               <Button colorScheme="brand">イベントの編集</Button>
             </Link>
