@@ -46,6 +46,7 @@ export const UpdateForm = () => {
         <Input
           id="address"
           type="text"
+          value={event.address}
           placeholder="東京都千代田区"
           {...register('address', { required: '必須項目です' })}
         />
@@ -58,6 +59,7 @@ export const UpdateForm = () => {
             return
           }}
           locale="ja"
+          value={event.startDate}
           dateFormat="yyyy/MM/dd"
         />
       </FormControl>
@@ -69,6 +71,7 @@ export const UpdateForm = () => {
             return
           }}
           locale="ja"
+          value={event.endDate}
           dateFormat="yyyy/MM/dd"
         />
       </FormControl>
