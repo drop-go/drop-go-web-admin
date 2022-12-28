@@ -6,7 +6,7 @@ import { useCookies } from 'react-cookie'
 import { Image } from '@chakra-ui/react'
 
 export const SideMenu = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['token'])
+  const [_cookies, _setCookie, removeCookie] = useCookies(['token'])
   const signOut = () => removeCookie('token')
   return (
     <VStack bgColor="brand.500" w="50px" color="white" h="92vh" width="15vw">
@@ -32,9 +32,11 @@ export const SideMenu = () => {
         </Link>
       </Box>
       <Box h="7vh" w="100%" borderBottom="1px" borderColor="brand.50">
-        <Center h="100%" w="100%">
-          Analytics
-        </Center>
+        <Link to={'/dashboard/analytics'}>
+          <Center h="100%" w="100%">
+            Analytics
+          </Center>
+        </Link>
       </Box>
       <Box h="7vh" w="100%" borderBottom="1px" borderColor="brand.50">
         <Center h="100%" w="100%">

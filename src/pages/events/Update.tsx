@@ -1,12 +1,12 @@
 import React from 'react'
 import { Template } from '../../components/Template'
-import { New as NewEvent } from '../../components/events/New'
+import { Update as EventUpdate } from '../../components/events/Update'
 
-export const New = () => {
+export const Update = () => {
   return (
     <div>
       <Template>
-        <NewEvent />
+        <EventUpdate />
       </Template>
     </div>
   )

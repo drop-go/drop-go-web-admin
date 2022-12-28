@@ -1,44 +1,15 @@
-import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { FormErrorMessage, FormLabel, FormControl, Input, Button, Center, Textarea } from '@chakra-ui/react'
-import { useNavigate } from 'react-router-dom'
-import { useCookies } from 'react-cookie'
-import { UserPostRequest } from '../api/interface'
-import axios from 'axios'
-import { API_URL } from '../consts/env'
-
-const url = `${API_URL}/user`
+import { Button, Center, FormControl, FormErrorMessage, FormLabel, Input, Textarea } from '@chakra-ui/react'
+import React from 'react'
+import { useSignUpQuery } from '../hooks/useSignUpQuery'
 
 export const SignUpForm = () => {
-  const [cookies, setCookie] = useCookies(['token'])
-  const [error, setError] = useState('')
   const {
+    error,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm()
-  const navigate = useNavigate()
-  const onSubmit = (data: any) => {
-    const { email, password, organization, organizationDescription } = data
-    const body: UserPostRequest = {
-      email: email,
-      password: password,
-      name: organization,
-      description: organizationDescription,
-      iconDataURI: '',
-    }
-
-    axios
-      .post(url, body)
-      .then((res) => {
-        const token = res.data.token
-        setCookie('token', token)
-        navigate('/dashboard')
-      })
-      .catch((err) => {
-        setError(`エラー: ${err}`)
-      })
-  }
+    onSubmit,
+  } = useSignUpQuery()
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

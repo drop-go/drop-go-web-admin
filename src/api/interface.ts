@@ -56,7 +56,7 @@ export interface EventPutRequest {
   endDate: number
   scope: 'public' | 'private' | 'hidden'
   description: string
-  imageDataURI: string
+  imageDataURI?: string
   title: string
   startDate: number
 }
@@ -149,23 +149,12 @@ export interface ItemDeleteResponse {
 // export interface LogDownloadGetRequest {}
 
 export interface LogDownloadGetResponse {
-  item: {
-    eventId: string
-    createdAt: number
-    coordinate: {
-      latitude: string
-      longitude: string
-    }
-    scope: string
-    description: string
-    id: string
-    title: string
-    radius: number
-    userId: string
-  }
+  itemId: string
+  eventId: string
+  createdAt: string
   ip: string
-  downloadedAt: number
   userAgent: string
+  id: string
 }
 
 // export interface UserGetRequest {}
@@ -208,5 +197,9 @@ export interface UserDeleteRequest {
 }
 
 export interface UserDeleteResponse {
+  message: string
+}
+
+export interface errorResponse {
   message: string
 }
