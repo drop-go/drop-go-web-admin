@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tr, Image, Tbody, Td, Box } from '@chakra-ui/react'
+import { Tr, Image, Tbody, Td } from '@chakra-ui/react'
 import { Link } from '../../components/Link'
 import { EventsGetResponse } from '../../api/interface'
 import { useGetEventsQuery } from '../../hooks/useGetEventsQuery'
