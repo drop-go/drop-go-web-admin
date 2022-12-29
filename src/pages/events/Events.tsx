@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Center,
   Flex,
   Skeleton,
@@ -14,12 +15,14 @@ import {
   Tr,
 } from '@chakra-ui/react'
 import React, { Suspense } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ErrorBoundary } from '../../components/ErrorBoundary'
 import { List } from '../../components/events/List'
 import { Template } from '../../components/Template'
 
 export const Events = () => {
+  const navigate = useNavigate()
+  const handleChangeJump = () => navigate('/dashboard/events/new')
   return (
     <div>
       <Template>
@@ -32,11 +35,13 @@ export const Events = () => {
                 </Text>
                 <Spacer />
                 <Center m="10px">
-                  <Link to="/dashboard/events/new">新規作成</Link>
+                  <Button colorScheme="brand" onClick={handleChangeJump}>
+                    新規作成
+                  </Button>
                 </Center>
               </Flex>
               <TableContainer>
-                <Table variant="simple">
+                <Table variant="simple" w="100%">
                   <Thead>
                     <Tr>
                       <Th>イベント名</Th>

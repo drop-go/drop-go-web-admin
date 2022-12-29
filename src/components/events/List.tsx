@@ -1,23 +1,32 @@
 import React from 'react'
 import { Tr, Image, Tbody, Td } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { Link } from '../../components/Link'
 import { EventsGetResponse } from '../../api/interface'
 import { useGetEventsQuery } from '../../hooks/useGetEventsQuery'
 
 export const List = () => {
   const { events } = useGetEventsQuery()
+
   return (
     <Tbody>
       {events.length ? (
         events.map((event: EventsGetResponse, key: number) => (
-          <Tr key={key}>
-            <Link to={`/dashboard/events/${event.id}`}>
-              <Td m="5px">{event.title}</Td>
-              <Td m="5px">{event.scope}</Td>
-              <Td m="5px">
+          <Tr key={key} w="80vw">
+            <Td>
+              <Link to={`/dashboard/events/${event.id}`} display="block">
+                {event.title}
+              </Link>
+            </Td>
+            <Td>
+              <Link to={`/dashboard/events/${event.id}`} display="block">
+                {event.scope === 'public' ? '公開' : event.scope === 'private' ? '非公開' : '非表示'}
+              </Link>
+            </Td>
+            <Td>
+              <Link to={`/dashboard/events/${event.id}`} display="block">
                 <Image src={event.imageUrl} height="100px" />
-              </Td>
-            </Link>
+              </Link>
+            </Td>
           </Tr>
         ))
       ) : (
