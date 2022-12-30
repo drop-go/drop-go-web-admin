@@ -3,6 +3,7 @@ import { Tr, Image, Tbody, Td } from '@chakra-ui/react'
 import { Link } from '../../components/Link'
 import { EventsGetResponse } from '../../api/interface'
 import { useGetEventsQuery } from '../../hooks/useGetEventsQuery'
+import { showScope } from '../../utils'
 
 export const List = () => {
   const { events } = useGetEventsQuery()
@@ -19,7 +20,7 @@ export const List = () => {
             </Td>
             <Td>
               <Link to={`/dashboard/events/${event.id}`} display="block">
-                {event.scope === 'public' ? '公開' : event.scope === 'private' ? '非公開' : '非表示'}
+                {showScope(event.scope)}
               </Link>
             </Td>
             <Td>
