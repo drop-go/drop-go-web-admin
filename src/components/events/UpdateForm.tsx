@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { Button, FormControl, FormLabel, Input, Textarea } from '@chakra-ui/react'
+import { Button, Flex, FormControl, FormLabel, Input, Select, Textarea } from '@chakra-ui/react'
 import ja from 'date-fns/locale/ja'
 import DatePicker, { registerLocale } from 'react-datepicker'
 import { useUpdateEventQuery } from '../../hooks/useUpdateEventQuery'
@@ -24,15 +24,15 @@ export const UpdateForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl>
+      <FormControl mb="20px">
         <FormLabel>タイトル</FormLabel>
         <Input id="title" type="text" {...register('title', { required: '必須項目です' })} />
       </FormControl>
-      <FormControl>
+      <FormControl mb="20px">
         <FormLabel>紹介文</FormLabel>
         <Textarea id="description" {...register('description', { required: '必須項目です' })} />
       </FormControl>
-      <FormControl>
+      <FormControl mb="20px">
         <FormLabel>イベント住所</FormLabel>
         <Input
           id="address"
@@ -41,20 +41,30 @@ export const UpdateForm = () => {
           {...register('address', { required: '必須項目です' })}
         />
       </FormControl>
-      <FormControl mb="16px">
-        <FormLabel>開催期間（開始日）</FormLabel>
-        <DatePicker
-          selected={new Date(startDate)}
-          onChange={handleChangeStartDate}
-          locale="ja"
-          dateFormat="yyyy/MM/dd"
-        />
+      <Flex mb="20px">
+        <FormControl>
+          <FormLabel>開催期間（開始日）</FormLabel>
+          <DatePicker
+            selected={new Date(startDate)}
+            onChange={handleChangeStartDate}
+            locale="ja"
+            dateFormat="yyyy/MM/dd"
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel>開催期間（終了日）</FormLabel>
+          <DatePicker selected={new Date(endDate)} onChange={handleChangeEndDate} locale="ja" dateFormat="yyyy/MM/dd" />
+        </FormControl>
+      </Flex>
+      <FormControl h={'15%'} mb="20px">
+        <FormLabel>公開設定</FormLabel>
+        <Select id="scope" {...register('scope')}>
+          <option value="public">公開</option>
+          <option value="private">非公開</option>
+          <option value="hidden">非表示(一般ユーザーのアプリ上には表示されません)</option>
+        </Select>
       </FormControl>
-      <FormControl mb="16px">
-        <FormLabel>開催期間（終了日）</FormLabel>
-        <DatePicker selected={new Date(endDate)} onChange={handleChangeEndDate} locale="ja" dateFormat="yyyy/MM/dd" />
-      </FormControl>
-      <FormControl mb="32px">
+      <FormControl mb="50px">
         <FormLabel>サムネイル</FormLabel>
         <input type="file" onChange={handleChangeFile} />
       </FormControl>

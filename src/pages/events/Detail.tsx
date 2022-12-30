@@ -16,9 +16,13 @@ import {
   Tbody,
   Td,
   Spinner,
+  Button,
 } from '@chakra-ui/react'
 import { ErrorBoundary } from '../../components/ErrorBoundary'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { CloseIcon } from '@chakra-ui/icons'
+import { useOnBack } from '../../hooks/useOnBack'
+import { Link } from '../../components/Link'
 
 export const Detail = () => {
   return (
@@ -42,39 +46,56 @@ export const Detail = () => {
 
 const Loading = () => {
   const { eventId } = useParams()
+  const { onBack } = useOnBack()
   return (
     <>
-      <Text fontSize="3xl" m="20px">
-        <Skeleton height="10px"></Skeleton>
-      </Text>
+      <Flex>
+        <Text fontSize="3xl" m="20px">
+          <Skeleton height="10px"></Skeleton>
+        </Text>
+        <Spacer />
+        <Center pr="16px">
+          <CloseIcon cursor="pointer" onClick={onBack} />
+        </Center>
+      </Flex>
       <Flex>
         <Box m="20px" w="50%">
-          <Text fontSize="2xl">詳細</Text>
-          <Text>
-            <Skeleton height="10px"></Skeleton>
-          </Text>
-          <Spinner m="50px" size="xl" />
-          <Text>公開設定</Text>
-          <Text>
-            <Skeleton height="10px"></Skeleton>
-          </Text>
-          <Text>開始日</Text>
-          <Text>
-            <Skeleton height="10px"></Skeleton>
-          </Text>
-          <Text>終了日</Text>
-          <Text>
-            <Skeleton height="10px"></Skeleton>
-          </Text>
+          <Box mb="20px">
+            <Text fontSize="2xl">詳細</Text>
+            <Text>
+              <Skeleton height="10px"></Skeleton>
+            </Text>
+          </Box>
+          <Box mb="20px">
+            <Text fontSize="2xl">サムネイル</Text>
+            <Spinner m="50px" size="xl" />
+          </Box>
+          <Box mb="20px">
+            <Text>公開設定</Text>
+            <Text>
+              <Skeleton height="10px"></Skeleton>
+            </Text>
+          </Box>
+          <Box mb="20px">
+            <Text fontSize="2xl">開催期間</Text>
+            <Text>
+              <Skeleton height="10px"></Skeleton>
+            </Text>
+          </Box>
+          <Box mb="50px">
+            <Link to={`/dashboard/events/${eventId}/update`} color="brand.200">
+              イベントの編集
+            </Link>
+          </Box>
+          <Box>
+            <Button colorScheme="red">イベントを削除する</Button>
+          </Box>
         </Box>
         <Box m="20px" w="50%">
           <Flex>
             <Text>ファイル一覧</Text>
             <Spacer />
-            <Link to={`/dashboard/events/${eventId}/update`}>
-              <Text>イベントの編集</Text>
-            </Link>
-            <Link to={`/dashboard/events/${eventId}/file/new`}>
+            <Link to={`/dashboard/events/${eventId}/file/new`} color="brand.200">
               <Text>ファイル新規登録</Text>
             </Link>
           </Flex>

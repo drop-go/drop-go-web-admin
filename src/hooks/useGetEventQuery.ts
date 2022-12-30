@@ -9,6 +9,7 @@ export const useGetEventQuery = (eventId: string) => {
     title: result.data.title,
     description: result.data.description,
     address: result.data.address,
+    scope: result.data.scope,
     imageUrl: result.data.imageDataURI,
     startDate: new Date(result.data.startDate).toLocaleDateString(),
     endDate: new Date(result.data.endDate).toLocaleDateString(),

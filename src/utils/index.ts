@@ -12,3 +12,6 @@ export const unixToDate = (unixTime: number) => {
 }
 
 export const dateToUnix = (date: string): number => new Date(date.replace(/日/, '').replace(/[年月]+/g, '-')).getTime()
+
+export const showScope = (scope: 'public' | 'private' | 'hidden') =>
+  scope === 'public' ? '公開' : scope === 'hidden' ? '非表示' : '非公開'

@@ -1,4 +1,16 @@
-import { Box, Button, Center, Flex, FormControl, FormLabel, Input, Spacer, Text, Textarea } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  Select,
+  Spacer,
+  Text,
+  Textarea,
+} from '@chakra-ui/react'
 import React from 'react'
 import DatePicker, { registerLocale } from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -27,14 +39,14 @@ export const New = () => {
   return (
     <Box bgColor="#EDF2F6" h="92vh" w="85vw">
       <Center w="100%" h="100%">
-        <Box w="70vw" h="85vh" bg="white" m="auto" px="16px">
+        <Box w="80vw" h="85vh" bg="white" m="auto" px="16px">
           <Flex>
             <Text fontSize="3xl" m="20px">
               イベント新規作成
             </Text>
             <Spacer />
             <Center pr="16px">
-              <CloseIcon onClick={onBack} />
+              <CloseIcon cursor="pointer" onClick={onBack} />
             </Center>
           </Flex>
           <span>{error}</span>
@@ -65,13 +77,23 @@ export const New = () => {
                 {...register('address', { required: '必須項目です' })}
               />
             </FormControl>
-            <FormControl mb="16px">
-              <FormLabel>開催期間（開始日）</FormLabel>
-              <DatePicker selected={startDate} onChange={handleChangeStartDate} locale="ja" dateFormat="yyyy/MM/dd" />
-            </FormControl>
-            <FormControl mb="16px">
-              <FormLabel>開催期間（終了日）</FormLabel>
-              <DatePicker selected={endDate} onChange={handleChangeEndDate} locale="ja" dateFormat="yyyy/MM/dd" />
+            <Flex mb="16px">
+              <FormControl>
+                <FormLabel>開催期間（開始日）</FormLabel>
+                <DatePicker selected={startDate} onChange={handleChangeStartDate} locale="ja" dateFormat="yyyy/MM/dd" />
+              </FormControl>
+              <FormControl>
+                <FormLabel>開催期間（終了日）</FormLabel>
+                <DatePicker selected={endDate} onChange={handleChangeEndDate} locale="ja" dateFormat="yyyy/MM/dd" />
+              </FormControl>
+            </Flex>
+            <FormControl h={'15%'} mb="20px">
+              <FormLabel>公開設定</FormLabel>
+              <Select id="scope" {...register('scope')}>
+                <option value="public">公開</option>
+                <option value="private">非公開</option>
+                <option value="hidden">非表示(一般ユーザーのアプリ上には表示されません)</option>
+              </Select>
             </FormControl>
             <FormControl mb="32px">
               <FormLabel>サムネイル</FormLabel>
