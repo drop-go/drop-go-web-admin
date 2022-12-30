@@ -38,14 +38,14 @@ export const usePostEventQuery = () => {
     fileReader.readAsDataURL(files[0])
   }
   const onSubmit = (data: any) => {
-    const { title, description, address } = data
+    const { title, description, address, scope } = data
     const header = {
       Authorization: `Bearer ${cookies.token}`,
     }
     const body: EventPostRequest = {
       address: address,
       endDate: endDate.getTime(),
-      scope: 'public', // TODO: 固定値をはずす
+      scope: scope,
       title: title,
       description: description,
       startDate: startDate.getTime(),

@@ -61,6 +61,7 @@ export const UpdateForm = () => {
         <Select id="scope" {...register('scope')}>
           <option value="public">公開</option>
           <option value="private">非公開</option>
+          <option value="hidden">非表示(一般ユーザーのアプリ上には表示されません)</option>
         </Select>
       </FormControl>
       <FormControl mb="50px">
