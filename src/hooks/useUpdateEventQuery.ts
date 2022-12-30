@@ -40,15 +40,16 @@ export const useUpdateEventQuery = (eventId: string) => {
       title: event.title,
       description: event.description,
       address: event.address,
+      scope: event.scope,
     },
   })
   const onSubmit = (data: any) => {
-    const { address, description, title } = data
+    const { address, description, title, scope } = data
     const body: EventPutRequest = {
       title: title,
       address: address,
       description: description,
-      scope: 'public',
+      scope: scope,
       startDate: startDate,
       endDate: endDate,
     }

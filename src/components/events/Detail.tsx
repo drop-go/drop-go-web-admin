@@ -37,7 +37,7 @@ export const Detail = () => {
         </Text>
         <Spacer />
         <Center pr="16px">
-          <CloseIcon onClick={onBack} />
+          <CloseIcon cursor="pointer" onClick={onBack} />
         </Center>
       </Flex>
       <Flex>
