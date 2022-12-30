@@ -1,3 +1,4 @@
+import { CloseIcon } from '@chakra-ui/icons'
 import {
   Box,
   Text,
@@ -12,45 +13,70 @@ import {
   Td,
   Spacer,
   Button,
+  Center,
 } from '@chakra-ui/react'
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useDeleteEvnetQuery } from '../../hooks/useDeleteEventQuery'
 import { useGetEventDetailQuery } from '../../hooks/useGetEventDetailQuery'
-import { unixToDate } from '../../utils'
+import { useOnBack } from '../../hooks/useOnBack'
+import { showScope, unixToDate } from '../../utils'
+import { Link } from '../Link'
 
 export const Detail = () => {
   const { eventId } = useParams()
   const { event, items } = useGetEventDetailQuery(eventId || '')
   const { handleChangeDelete } = useDeleteEvnetQuery(eventId || '')
+  const { onBack } = useOnBack()
 
   return (
     <>
-      <Text fontSize="3xl" m="20px">
-        {event?.title}
-      </Text>
+      <Flex>
+        <Text fontSize="3xl" m="20px">
+          {event?.title}
+        </Text>
+        <Spacer />
+        <Center pr="16px">
+          <CloseIcon onClick={onBack} />
+        </Center>
+      </Flex>
       <Flex>
         <Box m="20px" w="50%">
-          <Text fontSize="2xl">詳細</Text>
-          <Text>{event?.description}</Text>
-          <Image src={event?.imageUrl} h="200px" />
-          <Text>公開設定</Text>
-          <Text>{event?.scope}</Text>
-          <Text>開始日</Text>
-          <Text>{unixToDate(event?.startDate)}</Text>
-          <Text>終了日</Text>
-          <Text>{unixToDate(event?.endDate)}</Text>
+          <Box mb="20px">
+            <Text fontSize="2xl">詳細</Text>
+            <Text>{event?.description}</Text>
+          </Box>
+          <Box mb="20px">
+            <Text fontSize="2xl">サムネイル</Text>
+            <Image src={event?.imageUrl} h="200px" />
+          </Box>
+          <Box mb="20px">
+            <Text fontSize="2xl">公開設定</Text>
+            <Text>{showScope(event?.scope)}</Text>
+          </Box>
+          <Box mb="20px">
+            <Text fontSize="2xl">開催期間</Text>
+            <Text>
+              {unixToDate(event?.startDate)}~{unixToDate(event?.endDate)}
+            </Text>
+          </Box>
+          <Box mb="50px">
+            <Link to={`/dashboard/events/${eventId}/update`} color="brand.200">
+              イベントの編集
+            </Link>
+          </Box>
+          <Box>
+            <Button colorScheme="red" onClick={handleChangeDelete}>
+              イベントを削除する
+            </Button>
+          </Box>
         </Box>
         <Box m="20px" w="50%">
-          <Flex>
-            <Text>ファイル一覧</Text>
+          <Flex mb="20px">
+            <Text fontSize="2xl">ファイル一覧</Text>
             <Spacer />
-            <Button onClick={handleChangeDelete}>イベントを削除する</Button>
-            <Link to={`/dashboard/events/${eventId}/update`}>
-              <Button colorScheme="brand">イベントの編集</Button>
-            </Link>
-            <Link to={`/dashboard/events/${eventId}/file/new`}>
-              <Text>ファイル新規登録</Text>
+            <Link to={`/dashboard/events/${eventId}/file/new`} color="brand.200">
+              ファイル新規登録
             </Link>
           </Flex>
           <TableContainer>
