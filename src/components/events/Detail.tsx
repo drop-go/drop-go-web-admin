@@ -14,6 +14,14 @@ import {
   Spacer,
   Button,
   Center,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
 } from '@chakra-ui/react'
 import React from 'react'
 import { useParams } from 'react-router-dom'
@@ -28,6 +36,7 @@ export const Detail = () => {
   const { event, items } = useGetEventDetailQuery(eventId || '')
   const { handleChangeDelete } = useDeleteEvnetQuery(eventId || '')
   const { onBack } = useOnBack()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
@@ -66,7 +75,7 @@ export const Detail = () => {
             </Link>
           </Box>
           <Box>
-            <Button colorScheme="red" onClick={handleChangeDelete}>
+            <Button colorScheme="red" onClick={onOpen}>
               イベントを削除する
             </Button>
           </Box>
@@ -101,6 +110,23 @@ export const Detail = () => {
           </TableContainer>
         </Box>
       </Flex>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay>
+          <ModalContent>
+            <ModalHeader>イベントの削除</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>本当に削除してよろしいですか？</ModalBody>
+            <ModalFooter>
+              <Button colorScheme="red" mr={3} onClick={handleChangeDelete}>
+                削除
+              </Button>
+              <Button variant="ghost" onClick={onClose}>
+                戻る
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
     </>
   )
 }
