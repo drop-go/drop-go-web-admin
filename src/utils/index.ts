@@ -15,3 +15,19 @@ export const dateToUnix = (date: string): number => new Date(date.replace(/日/,
 
 export const showScope = (scope: 'public' | 'private' | 'hidden') =>
   scope === 'public' ? '公開' : scope === 'hidden' ? '非表示' : '非公開'
+
+export const unixToDateTime = (unixTime: number) => {
+  const date = new Date(unixTime)
+  return String(
+    date.getFullYear() +
+      '年' +
+      Number(date.getMonth() + 1) +
+      '月' +
+      date.getDate() +
+      '日' +
+      date.getHours() +
+      '時' +
+      date.getMinutes() +
+      '分'
+  )
+}
