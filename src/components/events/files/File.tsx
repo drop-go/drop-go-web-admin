@@ -59,7 +59,7 @@ export const File = (props: { item: ItemsGetResponse; key: number }) => {
           編集
         </Button>
         <DeleteItem itemId={item.id} />
-        <Modal isOpen={isOpen} onClose={onClose} size="full">
+        <Modal isOpen={isOpen} onClose={onClose} size="6xl">
           <ModalOverlay>
             <ModalContent>
               <ModalHeader>
