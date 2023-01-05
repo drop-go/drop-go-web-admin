@@ -56,9 +56,11 @@ export const SideMenu = () => {
         <Center marginBottom="16px">
           <Image
             borderRadius='full'
-            boxSize='30%'
+            boxSize='50px'
             src={`${process.env.PUBLIC_URL}/base_icon.png`}
             alt='Your Icon'
+            backgroundColor='gray'
+            marginRight='8px'
           />
           username
         </Center>
