@@ -10,7 +10,6 @@ import {
   Tr,
   Th,
   Tbody,
-  Td,
   Spacer,
   Button,
   Center,
@@ -86,14 +85,14 @@ export const Detail = () => {
             <Text fontSize="2xl">ファイル一覧</Text>
             <Spacer />
             <Link to={`/dashboard/events/${eventId}/file/new`} color="brand.200">
-              ファイル新規登録
+              アイテム新規登録
             </Link>
           </Flex>
           <TableContainer>
             <Table variant="simple">
               <Thead>
                 <Tr>
-                  <Th>ファイル名</Th>
+                  <Th>アイテム名</Th>
                   <Th></Th>
                 </Tr>
               </Thead>

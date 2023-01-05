@@ -142,7 +142,7 @@ export const File = (props: { item: ItemsGetResponse; key: number }) => {
                       isLoading={isSubmitting}
                       onClick={onClose}
                       type="submit"
-                      w="200px"
+                      w="100%"
                     >
                       更新
                     </Button>
