@@ -46,7 +46,6 @@ export const File = (props: { item: ItemsGetResponse; key: number }) => {
     handleSubmit,
     formState: { errors, isSubmitting },
     handleChangeSlider,
-    handleChangeFile,
     handleChangeMap,
     onSubmit,
   } = useUpdateItemQuery(item.id)
@@ -73,14 +72,13 @@ export const File = (props: { item: ItemsGetResponse; key: number }) => {
                       <Flex h={'100%'}>
                         <Box w="48%">
                           <FormControl>
-                            <FormLabel>公開ファイル名</FormLabel>
+                            <FormLabel>タイトル</FormLabel>
                             <Input
                               id="title"
                               type="text"
-                              placeholder="ファイル名"
+                              placeholder="タイトル"
                               {...register('title', { required: '必須項目です' })}
                             />
-                            <input type="file" onChange={handleChangeFile} />
                           </FormControl>
                           <FormControl h={'15%'}>
                             <FormLabel>公開設定</FormLabel>
@@ -134,8 +132,15 @@ export const File = (props: { item: ItemsGetResponse; key: number }) => {
                         </Box>
                       </Flex>
                     </Box>
-                    <Button mt={4} colorScheme="brand" isLoading={isSubmitting} type="submit" w={'100%'}>
-                      アップロード
+                    <Button
+                      mt={4}
+                      colorScheme="brand"
+                      isLoading={isSubmitting}
+                      onClick={onClose}
+                      type="submit"
+                      w="200px"
+                    >
+                      更新
                     </Button>
                   </Flex>
                 </form>

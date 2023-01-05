@@ -124,10 +124,8 @@ export interface ItemGetResponse {
 }
 
 export interface ItemPutRequest {
-  coodinate: {
-    latitude: string
-    longitude: string
-  }
+  latitude: string
+  longitude: string
   scope: 'public' | 'private' | 'hidden'
   description: string
   title: string

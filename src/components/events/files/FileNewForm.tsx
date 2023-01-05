@@ -51,11 +51,11 @@ export const FileNewForm = () => {
                     {/* 左部分 */}
                     <Box w={'48%'}>
                       <FormControl h={'15%'}>
-                        <FormLabel>公開ファイル名</FormLabel>
+                        <FormLabel>タイトル</FormLabel>
                         <Input
                           id="title"
                           type="text"
-                          placeholder="ファイル名"
+                          placeholder="タイトル"
                           {...register('title', { required: '必須項目です' })}
                         />
                         <input type="file" onChange={handleChangeFile} />
