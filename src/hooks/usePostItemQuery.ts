@@ -42,7 +42,6 @@ export const usePostItemQuery = () => {
   }
   const handleChangeLink = (e: ChangeEvent<HTMLInputElement>) => {
     const dataUriHeader = 'data:text/plain;base64,'
-    console.log(e.target.value)
     const urlBase64 = Buffer.from(e.target.value).toString('base64')
     setLink(dataUriHeader + urlBase64)
   }
@@ -68,8 +67,7 @@ export const usePostItemQuery = () => {
 
     axios
       .post(url, body, { headers: header })
-      .then((res) => {
-        console.log(res.data.message)
+      .then(() => {
         navigate(`/dashboard/events/${eventId}`)
         refresh()
       })

@@ -11,10 +11,7 @@ export const TableData = () => {
           <Tr>
             <Th>アイテムID</Th>
             <Th>イベントID</Th>
-            {
-              // 作成日???
-            }
-            <Th>作成日</Th>
+            <Th>ダウンロード日時</Th>
             <Th>IPアドレス</Th>
             <Th>ユーザエージェント</Th>
             <Th>ID</Th>

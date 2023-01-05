@@ -4,7 +4,6 @@ export const useFile = () => {
   const [file, setFormatFile] = useState<File>()
   const [strFile, setStrFile] = useState<string>('')
   const [fileName, setFileName] = useState<string>()
-  const [fileType, setFileType] = useState<string>()
   const [error, setError] = useState<string>('')
   const setFile = (files: FileList | null) => {
     const fileReader = new FileReader()
@@ -23,10 +22,9 @@ export const useFile = () => {
       return
     }
     setFormatFile(files[0])
-    setFileType(files[0].name.split('.').pop())
-    setFileName(files[0].name.split('.').shift())
+    setFileName(files[0].name)
     fileReader.readAsDataURL(files[0])
   }
 
-  return { strFile, fileName, fileType, error, setFile }
+  return { strFile, fileName, error, setFile }
 }
