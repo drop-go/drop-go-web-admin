@@ -28,6 +28,7 @@ import React from 'react'
 import { ItemsGetResponse } from '../../../api/interface'
 import { DEFAULT_LAT, DEFAULT_LNG, DEFAULT_ZOOM } from '../../../consts/mapParams'
 import { useUpdateItemQuery } from '../../../hooks/useUpdateItemQuery'
+import { DeleteItem } from './DeleteFile'
 
 const center = {
   lat: DEFAULT_LAT,
@@ -53,8 +54,11 @@ export const File = (props: { item: ItemsGetResponse; key: number }) => {
   return (
     <Tr key={key}>
       <Td>{item.title}</Td>
-      <Td>
-        <Button onClick={onOpen}>編集</Button>
+      <Td w="30%">
+        <Button mr="25px" onClick={onOpen}>
+          編集
+        </Button>
+        <DeleteItem itemId={item.id} />
         <Modal isOpen={isOpen} onClose={onClose} size="full">
           <ModalOverlay>
             <ModalContent>
