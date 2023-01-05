@@ -12,7 +12,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/google-map-react": "^2.1.7",
-    "@types/jest": "^29.2.4",
+    "@types/jest": "^29.2.5",
     "@types/node": "^16.11.68",
     "@types/react": "^18.0.26",
     "@types/react-datepicker": "^4.8.0",
