@@ -109,10 +109,8 @@ export interface ItemPostResponse {
 export interface ItemGetResponse {
   eventId: string
   createdAt: number
-  coordinate: {
-    latitude: string
-    longitude: string
-  }
+  latitude: string
+  longitude: string
   file: {
     dataURI: string
     type: string
@@ -126,10 +124,8 @@ export interface ItemGetResponse {
 }
 
 export interface ItemPutRequest {
-  coodinate: {
-    latitude: string
-    longitude: string
-  }
+  latitude: string
+  longitude: string
   scope: 'public' | 'private' | 'hidden'
   description: string
   title: string

@@ -37,7 +37,10 @@ export const FileNewForm = () => {
     handleChangeSlider,
     handleChangeFile,
     handleChangeMap,
+    handleChangeLink,
     onSubmit,
+    itemType,
+    setItemType,
   } = usePostItemQuery()
   return (
     <Box bgColor="#EDF2F6" h="92vh" w="85vw">
@@ -51,14 +54,36 @@ export const FileNewForm = () => {
                     {/* 左部分 */}
                     <Box w={'48%'}>
                       <FormControl h={'15%'}>
-                        <FormLabel>公開ファイル名</FormLabel>
+                        <FormLabel>タイトル</FormLabel>
                         <Input
                           id="title"
                           type="text"
-                          placeholder="ファイル名"
+                          placeholder="タイトル"
                           {...register('title', { required: '必須項目です' })}
                         />
-                        <input type="file" onChange={handleChangeFile} />
+                      </FormControl>
+                      <FormControl h="15%">
+                        <Flex mb="10px">
+                          <Button
+                            colorScheme="brand"
+                            variant={itemType === 'file' ? 'solid' : 'outline'}
+                            onClick={() => setItemType('file')}
+                          >
+                            File
+                          </Button>
+                          <Button
+                            colorScheme="brand"
+                            variant={itemType === 'link' ? 'solid' : 'outline'}
+                            onClick={() => setItemType('link')}
+                          >
+                            Link
+                          </Button>
+                        </Flex>
+                        {itemType === 'file' ? (
+                          <input type="file" onChange={handleChangeFile} />
+                        ) : (
+                          <Input type="text" onChange={handleChangeLink} />
+                        )}
                       </FormControl>
                       <FormControl h={'15%'}>
                         <FormLabel>公開設定</FormLabel>
@@ -67,7 +92,7 @@ export const FileNewForm = () => {
                           <option value="private">非公開</option>
                         </Select>
                       </FormControl>
-                      <FormControl h={'70%'}>
+                      <FormControl h={'55%'}>
                         <FormLabel>詳細</FormLabel>
                         {
                           // TODO: placeholder内容

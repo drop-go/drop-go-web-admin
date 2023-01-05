@@ -9,6 +9,7 @@ import { API_URL } from '../consts/env'
 import { DEFAULT_LAT, DEFAULT_LNG } from '../consts/mapParams'
 import { getItemsState } from '../globalStates/getItemsState'
 import { useFile } from './useFile'
+import { Buffer } from 'buffer'
 
 const center = {
   lat: DEFAULT_LAT,
@@ -19,7 +20,9 @@ export const usePostItemQuery = () => {
   const [cookies] = useCookies(['token'])
   const [radius, setRadius] = useState(30)
   const [latLng, setLatLng] = useState<{ lat: number; lng: number }>(center)
-  const { strFile, fileName, fileType, setFile } = useFile()
+  const [link, setLink] = useState('')
+  const [itemType, setItemType] = useState<'file' | 'link'>('file')
+  const { strFile, fileName, setFile } = useFile()
   const {
     register,
     handleSubmit,
@@ -37,6 +40,11 @@ export const usePostItemQuery = () => {
       lng: lng(),
     })
   }
+  const handleChangeLink = (e: ChangeEvent<HTMLInputElement>) => {
+    const dataUriHeader = 'data:text/plain;base64,'
+    const urlBase64 = Buffer.from(e.target.value).toString('base64')
+    setLink(dataUriHeader + urlBase64)
+  }
   const onSubmit = (data: any) => {
     const { title, scope, description } = data
     const header = {
@@ -44,9 +52,9 @@ export const usePostItemQuery = () => {
     }
     const body: ItemPostRequest = {
       file: {
-        fileName: fileName || '', // TODO: undefined除去
-        dataURI: strFile || '', // TODO: undefined除去
-        type: fileType || '', // TODO: undefined除去
+        fileName: itemType === 'file' ? fileName || '' : `${eventId}_${new Date().getTime()}.link`, // TODO: undefined除去
+        dataURI: itemType === 'file' ? strFile || '' : link, // TODO: undefined除去
+        type: itemType, // TODO: undefined除去
       },
       latitude: String(latLng.lat),
       longitude: String(latLng.lng),
@@ -59,8 +67,7 @@ export const usePostItemQuery = () => {
 
     axios
       .post(url, body, { headers: header })
-      .then((res) => {
-        console.log(res.data.message)
+      .then(() => {
         navigate(`/dashboard/events/${eventId}`)
         refresh()
       })
@@ -78,6 +85,9 @@ export const usePostItemQuery = () => {
     handleChangeSlider,
     handleChangeFile,
     handleChangeMap,
+    handleChangeLink,
     onSubmit,
+    itemType,
+    setItemType,
   }
 }
