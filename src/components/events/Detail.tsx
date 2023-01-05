@@ -30,6 +30,7 @@ import { useGetEventDetailQuery } from '../../hooks/useGetEventDetailQuery'
 import { useOnBack } from '../../hooks/useOnBack'
 import { showScope, unixToDate } from '../../utils'
 import { Link } from '../Link'
+import { File } from './files/File'
 
 export const Detail = () => {
   const { eventId } = useParams()
@@ -93,17 +94,12 @@ export const Detail = () => {
               <Thead>
                 <Tr>
                   <Th>ファイル名</Th>
-                  <Th>緯度・経度</Th>
+                  <Th></Th>
                 </Tr>
               </Thead>
               <Tbody>
                 {items.map((item, key) => (
-                  <Tr key={key}>
-                    <Td>{item.title}</Td>
-                    <Td>
-                      {item.latitude}・{item.longitude}
-                    </Td>
-                  </Tr>
+                  <File item={item} key={key} />
                 ))}
               </Tbody>
             </Table>
