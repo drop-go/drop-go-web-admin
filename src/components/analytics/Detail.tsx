@@ -8,10 +8,10 @@ export const Detail = () => {
     <Box bgColor="#EDF2F6" h="92vh" w="85vw">
       <Center w="100%" h="100%">
         <Box w="80vw" h="85vh" bg="white" m="auto">
-          <Text fontSize="3xl" m="20px">
+          <Text fontSize="3xl" h="8vh" ml="20px" mt="2vh">
             ダウンロードログ
           </Text>
-          <TableContainer>
+          <TableContainer h="75vh" overflowY="unset">
             <Table w="95%" m="0 auto">
               <Thead>
                 <Tr>

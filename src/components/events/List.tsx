@@ -9,7 +9,7 @@ export const List = () => {
   const { events } = useGetEventsQuery()
 
   return (
-    <Tbody>
+    <Tbody overflow="scroll">
       {events.length ? (
         events.map((event: EventsGetResponse, key: number) => (
           <Tr key={key} w="80vw">
