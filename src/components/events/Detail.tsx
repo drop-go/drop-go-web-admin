@@ -40,7 +40,7 @@ export const Detail = () => {
 
   return (
     <>
-      <Flex>
+      <Flex h="10vh">
         <Text fontSize="3xl" m="20px">
           {event?.title}
         </Text>
@@ -49,8 +49,8 @@ export const Detail = () => {
           <CloseIcon cursor="pointer" onClick={onBack} />
         </Center>
       </Flex>
-      <Flex>
-        <Box m="20px" w="50%">
+      <Flex h="75vh">
+        <Box m="20px" w="50%" h="10vh">
           <Box mb="20px">
             <Text fontSize="2xl">詳細</Text>
             <Text>{event?.description}</Text>
@@ -80,15 +80,15 @@ export const Detail = () => {
             </Button>
           </Box>
         </Box>
-        <Box m="20px" w="50%">
-          <Flex mb="20px">
+        <Box m="20px" w="50%" h="65vh">
+          <Flex mb="20px" h="3vh">
             <Text fontSize="2xl">ファイル一覧</Text>
             <Spacer />
             <Link to={`/dashboard/events/${eventId}/file/new`} color="brand.200">
               アイテム新規登録
             </Link>
           </Flex>
-          <TableContainer>
+          <TableContainer h="62vh" overflowY="unset">
             <Table variant="simple">
               <Thead>
                 <Tr>

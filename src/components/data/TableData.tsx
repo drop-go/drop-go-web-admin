@@ -5,9 +5,9 @@ import { ErrorBoundary } from '../ErrorBoundary'
 
 export const TableData = () => {
   return (
-    <TableContainer bgColor="white" h="100%">
+    <TableContainer bgColor="white" h="100%" overflowY="unset">
       <Table w="95%" m="0 auto">
-        <Thead>
+        <Thead position="sticky" zIndex="docked">
           <Tr>
             <Th>アイテムID</Th>
             <Th>イベントID</Th>
